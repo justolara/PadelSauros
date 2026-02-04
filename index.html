@@ -1,1 +1,53 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Enfrentamientos Padelsaurios</title>
+    <style>
+        :root { --verde: #27ae60; --oscuro: #2c3e50; }
+        body { font-family: sans-serif; background: #f0f2f5; padding: 20px; }
+        .card { background: white; border-radius: 10px; padding: 20px; max-width: 800px; margin: auto; shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        h2 { color: var(--oscuro); text-align: center; border-bottom: 2px solid var(--verde); padding-bottom: 10px; }
+        
+        .partido { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 10px; align-items: center; padding: 15px; border-bottom: 1px solid #eee; }
+        .pareja { font-weight: bold; color: var(--oscuro); }
+        .sets-input { display: flex; gap: 5px; justify-content: center; }
+        input { width: 35px; padding: 5px; text-align: center; border: 1px solid #ccc; border-radius: 4px; font-size: 1.1em; }
+        
+        .header-tabla { font-size: 0.8em; color: #666; text-align: center; display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; margin-bottom: 5px; }
+        .btn-guardar { display: block; width: 100%; padding: 12px; background: var(--verde); color: white; border: none; border-radius: 5px; cursor: pointer; margin-top: 20px; font-size: 1em; }
+        .btn-guardar:hover { background: #219150; }
+    </style>
+</head>
+<body>
 
+<div class="card">
+    <h2>🦖 Marcador de Enfrentamientos</h2>
+    
+    <div class="header-tabla">
+        <div>PAREJAS</div>
+        <div>SET 1</div>
+        <div>SET 2</div>
+        <div>SET 3</div>
+    </div>
+
+    <!-- Bloque de Partido -->
+    <div class="partido">
+        <div class="pareja">Pareja 1<br><small>Jugador A / Jugador B</small></div>
+        <div class="sets-input"><input type="number" placeholder="0"></div>
+        <div class="sets-input"><input type="number" placeholder="0"></div>
+        <div class="sets-input"><input type="number" placeholder="0"></div>
+        
+        <div class="pareja">Pareja 2<br><small>Jugador C / Jugador D</small></div>
+        <div class="sets-input"><input type="number" placeholder="0"></div>
+        <div class="sets-input"><input type="number" placeholder="0"></div>
+        <div class="sets-input"><input type="number" placeholder="0"></div>
+    </div>
+
+    <!-- Puedes copiar el bloque "partido" para añadir más enfrentamientos del PDF -->
+
+    <button class="btn-guardar" onclick="alert('Resultado guardado (Simulación)')">Confirmar Resultado</button>
+</div>
+
+</body>
+</html>
