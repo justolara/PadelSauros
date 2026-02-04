@@ -2,52 +2,106 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Enfrentamientos Padelsaurios</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calendario Padelsaurios S7</title>
     <style>
         :root { --verde: #27ae60; --oscuro: #2c3e50; }
-        body { font-family: sans-serif; background: #f0f2f5; padding: 20px; }
-        .card { background: white; border-radius: 10px; padding: 20px; max-width: 800px; margin: auto; shadow: 0 2px 10px rgba(0,0,0,0.1); }
-        h2 { color: var(--oscuro); text-align: center; border-bottom: 2px solid var(--verde); padding-bottom: 10px; }
-        
-        .partido { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 10px; align-items: center; padding: 15px; border-bottom: 1px solid #eee; }
-        .pareja { font-weight: bold; color: var(--oscuro); }
-        .sets-input { display: flex; gap: 5px; justify-content: center; }
-        input { width: 35px; padding: 5px; text-align: center; border: 1px solid #ccc; border-radius: 4px; font-size: 1.1em; }
-        
-        .header-tabla { font-size: 0.8em; color: #666; text-align: center; display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; margin-bottom: 5px; }
-        .btn-guardar { display: block; width: 100%; padding: 12px; background: var(--verde); color: white; border: none; border-radius: 5px; cursor: pointer; margin-top: 20px; font-size: 1em; }
-        .btn-guardar:hover { background: #219150; }
+        body { font-family: sans-serif; background: #f4f7f6; padding: 15px; margin: 0; }
+        .jornada { background: white; border-radius: 12px; margin-bottom: 20px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); overflow: hidden; }
+        .fecha-header { background: var(--oscuro); color: white; padding: 12px; text-align: center; font-weight: bold; cursor: pointer; }
+        .partidos-container { display: none; padding: 0 15px; } /* Empieza oculto */
+        .partido { padding: 15px 0; border-bottom: 1px solid #eee; }
+        .partido:last-child { border-bottom: none; }
+        .nombres { display: flex; justify-content: space-between; align-items: center; font-size: 0.9rem; font-weight: bold; margin-bottom: 10px; }
+        .vs { color: var(--verde); font-size: 0.7rem; background: #e8f5e9; padding: 4px 8px; border-radius: 10px; }
+        .marcador { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+        .set { display: flex; flex-direction: column; align-items: center; background: #fafafa; padding: 5px; border-radius: 6px; }
+        input { width: 40px; height: 35px; text-align: center; border: 1px solid #ccc; border-radius: 5px; font-size: 1.1rem; margin: 2px 0; }
+        label { font-size: 0.6rem; color: #888; text-transform: uppercase; }
     </style>
 </head>
 <body>
 
-<div class="card">
-    <h2>🦖 Marcador de Enfrentamientos</h2>
+    <h2 style="text-align:center; color:var(--oscuro);">🦖 CALENDARIO PADELSAURIOS S7</h2>
+
+    <!-- JORNADA 04/02/2026 -->
+    <div class="jornada">
+        <div class="fecha-header" onclick="toggleJornada(this)">04 DE FEBRERO 2026</div>
+        <div class="partidos-container">
+            <div class="partido">
+                <div class="nombres"><span>MIGUEL/JORGE</span> <span class="vs">VS</span> <span>DANI/ROMÁN</span></div>
+                <div class="marcador"><div class="set"><label>S1</label><input type="number"><input type="number"></div><div class="set"><label>S2</label><input type="number"><input type="number"></div><div class="set"><label>S3</label><input type="number"><input type="number"></div></div>
+            </div>
+            <div class="partido">
+                <div class="nombres"><span>IVÁN/PABLO</span> <span class="vs">VS</span> <span>CARLOS/JUST</span></div>
+                <div class="marcador"><div class="set"><label>S1</label><input type="number"><input type="number"></div><div class="set"><label>S2</label><input type="number"><input type="number"></div><div class="set"><label>S3</label><input type="number"><input type="number"></div></div>
+            </div>
+        </div>
+    </div>
     
-    <div class="header-tabla">
-        <div>PAREJAS</div>
-        <div>SET 1</div>
-        <div>SET 2</div>
-        <div>SET 3</div>
+    <!-- JORNADA 11/02/2026 -->
+    <div class="jornada">
+        <div class="fecha-header" onclick="toggleJornada(this)">11 DE FEBRERO 2026</div>
+        <div class="partidos-container">
+            <div class="partido">
+                <div class="nombres"><span>MIGUEL/JORGE</span> <span class="vs">VS</span> <span>IVÁN/PABLO</span></div>
+                 <div class="marcador"><div class="set"><label>S1</label><input type="number"><input type="number"></div><div class="set"><label>S2</label><input type="number"><input type="number"></div><div class="set"><label>S3</label><input type="number"><input type="number"></div></div>
+            </div>
+            <div class="partido">
+                <div class="nombres"><span>DANI/ROMÁN</span> <span class="vs">VS</span> <span>CARLOS/JUST</span></div>
+                 <div class="marcador"><div class="set"><label>S1</label><input type="number"><input type="number"></div><div class="set"><label>S2</label><input type="number"><input type="number"></div><div class="set"><label>S3</label><input type="number"><input type="number"></div></div>
+            </div>
+        </div>
     </div>
 
-    <!-- Bloque de Partido -->
-    <div class="partido">
-        <div class="pareja">Pareja 1<br><small>Jugador A / Jugador B</small></div>
-        <div class="sets-input"><input type="number" placeholder="0"></div>
-        <div class="sets-input"><input type="number" placeholder="0"></div>
-        <div class="sets-input"><input type="number" placeholder="0"></div>
-        
-        <div class="pareja">Pareja 2<br><small>Jugador C / Jugador D</small></div>
-        <div class="sets-input"><input type="number" placeholder="0"></div>
-        <div class="sets-input"><input type="number" placeholder="0"></div>
-        <div class="sets-input"><input type="number" placeholder="0"></div>
+    <!-- JORNADA 18/02/2026 -->
+    <div class="jornada">
+        <div class="fecha-header" onclick="toggleJornada(this)">18 DE FEBRERO 2026</div>
+        <div class="partidos-container">
+            <div class="partido">
+                <div class="nombres"><span>CARLOS/JUST</span> <span class="vs">VS</span> <span>MIGUEL/JORGE</span></div>
+                 <div class="marcador"><div class="set"><label>S1</label><input type="number"><input type="number"></div><div class="set"><label>S2</label><input type="number"><input type="number"></div><div class="set"><label>S3</label><input type="number"><input type="number"></div></div>
+            </div>
+            <div class="partido">
+                <div class="nombres"><span>IVÁN/PABLO</span> <span class="vs">VS</span> <span>DANI/ROMÁN</span></div>
+                 <div class="marcador"><div class="set"><label>S1</label><input type="number"><input type="number"></div><div class="set"><label>S2</label><input type="number"><input type="number"></div><div class="set"><label>S3</label><input type="number"><input type="number"></div></div>
+            </div>
+        </div>
     </div>
+    
+    <!-- JORNADA 25/02/2026 -->
+    <div class="jornada">
+        <div class="fecha-header" onclick="toggleJornada(this)">25 DE FEBRERO 2026</div>
+        <div class="partidos-container">
+            <div class="partido">
+                <div class="nombres"><span>MIGUEL/JORGE</span> <span class="vs">VS</span> <span>DANI/ROMÁN</span></div>
+                 <div class="marcador"><div class="set"><label>S1</label><input type="number"><input type="number"></div><div class="set"><label>S2</label><input type="number"><input type="number"></div><div class="set"><label>S3</label><input type="number"><input type="number"></div></div>
+            </div>
+            <div class="partido">
+                <div class="nombres"><span>IVÁN/PABLO</span> <span class="vs">VS</span> <span>CARLOS/JUST</span></div>
+                 <div class="marcador"><div class="set"><label>S1</label><input type="number"><input type="number"></div><div class="set"><label>S2</label><input type="number"><input type="number"></div><div class="set"><label>S3</label><input type="number"><input type="number"></div></div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- MARZO (Los partidos de marzo son los mismos emparejamientos que las jornadas anteriores, por lo que este HTML te sirve para todas las fechas del recuadro) -->
 
-    <!-- Puedes copiar el bloque "partido" para añadir más enfrentamientos del PDF -->
-
-    <button class="btn-guardar" onclick="alert('Resultado guardado (Simulación)')">Confirmar Resultado</button>
-</div>
+    <script>
+        // Función JavaScript para expandir/colapsar las jornadas (Acordeón)
+        function toggleJornada(headerElement) {
+            const container = headerElement.nextElementSibling;
+            if (container.style.display === "block") {
+                container.style.display = "none";
+            } else {
+                container.style.display = "block";
+            }
+        }
+        // Mostrar la jornada de hoy (04 Feb) por defecto.
+        document.addEventListener('DOMContentLoaded', (event) => {
+            document.querySelector('.partidos-container').style.display = 'block';
+        });
+    </script>
 
 </body>
-</html>
+                                                                                                                                                                                                         </html>
+                                                                                                                                                                                                         
