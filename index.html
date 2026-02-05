@@ -26,22 +26,27 @@
 
     <!-- JORNADA 04/02/2026 -->
     <div class="jornada">
-        <div class="fecha-header" onclick="toggleJornada(this)">04 DE FEBRERO 2026</div>
-        <div class="partidos-container">
-            <div class="partido">
-                <div class="nombres" style="display: flex; flex-direction: column; align-items: center;">
-  <span>MIGUEL/JORGE</span>
-  <span class="vs">VS</span>
-  <span>DANI/ROMÁN</span>
-</div>
-                <div class="marcador"><div class="set"><label>S1</label><input type="number"><input type="number"></div><div class="set"><label>S2</label><input type="number"><input type="number"></div><div class="set"><label>S3</label><input type="number"><input type="number"></div></div>
+    <div class="fecha-header" onclick="toggleJornada(this)">04 DE FEBRERO 2026</div>
+    <div class="partidos-container">
+        <!-- Partido con nombres en vertical -->
+        <div class="partido" style="display: flex; align-items: center; gap: 15px; margin-bottom: 10px;">
+            <div class="nombres" style="display: flex; flex-direction: column; align-items: center; min-width: 120px; font-weight: bold;">
+                <span>MIGUEL/JORGE</span>
+                <span class="vs" style="font-size: 0.8em; color: #888;">VS</span>
+                <span>DANI/ROMÁN</span>
             </div>
-            <div class="partido">
-                <div class="nombres"><span>IVÁN/PABLO</span> <span class="vs">VS</span> <span>CARLOS/JUST</span></div>
-                <div class="marcador"><div class="set"><label>S1</label><input type="number"><input type="number"></div><div class="set"><label>S2</label><input type="number"><input type="number"></div><div class="set"><label>S3</label><input type="number"><input type="number"></div></div>
+            
+            <div class="marcador" style="display: flex; gap: 5px;">
+                <div class="set"><label>S1</label><input type="number"><input type="number"></div>
+                <div class="set"><label>S2</label><input type="number"><input type="number"></div>
+                <div class="set"><label>S3</label><input type="number"><input type="number"></div>
             </div>
         </div>
+
+        <!-- Repite la misma estructura para IVÁN/PABLO si quieres consistencia -->
     </div>
+</div>
+
     
     <!-- JORNADA 11/02/2026 -->
     <div class="jornada">
