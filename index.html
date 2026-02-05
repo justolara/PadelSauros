@@ -3,70 +3,71 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Marcador de Pádel</title>
-    <style>
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f4f7f6; display: flex; justify-content: center; padding: 20px; }
-        .jornada { width: 100%; max-width: 650px; background: white; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); overflow: hidden; }
-        .fecha-header { background: #2c3e50; color: white; padding: 15px; text-align: center; font-weight: bold; cursor: pointer; font-size: 1.2rem; }
-        .partidos-container { padding: 20px; }
-        .partido { display: flex; align-items: center; gap: 20px; padding: 20px; border-bottom: 1px solid #eee; transition: background 0.3s; }
-        .partido:last-child { border-bottom: none; }
-        .partido:hover { background: #fafafa; }
-        
-        .marcador { display: flex; gap: 12px; }
-        .set { display: flex; flex-direction: column; gap: 6px; align-items: center; }
-        .set label { font-size: 0.75rem; color: #7f8c8d; font-weight: bold; }
-        input[type="number"] { width: 40px; height: 35px; text-align: center; border: 1px solid #dcdde1; border-radius: 6px; font-size: 1rem; }
-        
-        .nombres { display: flex; flex-direction: column; justify-content: space-between; height: 75px; flex-grow: 1; margin-top: 18px; }
-        .nombres span { font-weight: 600; color: #2f3640; font-size: 1rem; }
-        .vs { font-size: 0.7rem !important; color: #95a5a6 !important; font-weight: normal !important; text-transform: lowercase; }
-        
-        .btn-guardar { background: #27ae60; color: white; border: none; padding: 10px 15px; border-radius: 8px; cursor: pointer; font-weight: bold; transition: background 0.2s; }
-        .btn-guardar:hover { background: #219150; }
-        .ganador { color: #27ae60 !important; }
-    </style>
+    <title>Gestión de Ligas de Pádel</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <div class="jornada">
-        <div class="fecha-header" onclick="toggleJornada()">04 DE FEBRERO 2026</div>
-        <div class="partidos-container" id="contenedor">
+    <div class="main-wrapper">
+        <!-- Selector de Ligas (Navegación) -->
+        <nav class="selector-ligas">
+            <button onclick="mostrarLiga('liga-03')" class="btn-liga active">LIGA 03</button>
+            <button onclick="mostrarLiga('liga-04')" class="btn-liga">LIGA 04</button>
+            <button onclick="mostrarLiga('liga-05')" class="btn-liga">LIGA 05</button>
+            <button onclick="mostrarLiga('liga-06')" class="btn-liga">LIGA 06</button>
+        </nav>
+
+        <!-- SECCIÓN LIGA 03 -->
+        <section id="liga-03" class="liga-section">
+            <h1 class="titulo-liga">LIGA 03 (Temporada 2026)</h1>
             
-            <!-- PARTIDO 1 -->
-            <div class="partido" id="partido-1">
-                <div class="marcador">
-                    <div class="set"><label>S1</label><input type="number" class="p1-s1"><input type="number" class="p2-s1"></div>
-                    <div class="set"><label>S2</label><input type="number" class="p1-s2"><input type="number" class="p2-s2"></div>
-                    <div class="set"><label>S3</label><input type="number" class="p1-s3"><input type="number" class="p2-s3"></div>
-                </div>
-                <div class="nombres">
-                    <span class="nombre1">MIGUEL/JORGE</span>
-                    <span class="vs">vs</span>
-                    <span class="nombre2">DANI/ROMÁN</span>
-                </div>
-                <button class="btn-guardar" onclick="guardarPartido('partido-1')">Guardar</button>
-            </div>
+            <!-- JORNADA 1 -->
+            <div class="jornada">
+                <div class="fecha-header" onclick="toggleElemento('j-04-02')">04 DE FEBRERO 2026</div>
+                <div class="partidos-container" id="j-04-02">
+                    <!-- Partido 1 -->
+                    <div class="partido" id="l3-j1-p1">
+                        <div class="marcador">
+                            <div class="set"><label>S1</label><input type="number" class="p1-s1"><input type="number" class="p2-s1"></div>
+                            <div class="set"><label>S2</label><input type="number" class="p1-s2"><input type="number" class="p2-s2"></div>
+                            <div class="set"><label>S3</label><input type="number" class="p1-s3"><input type="number" class="p2-s3"></div>
+                        </div>
+                        <div class="nombres">
+                            <span class="nombre1">MIGUEL/JORGE</span>
+                            <span class="vs">vs</span>
+                            <span class="nombre2">DANI/ROMÁN</span>
+                        </div>
+                        <button class="btn-guardar" onclick="guardarPartido('l3-j1-p1')">Guardar</button>
+                    </div>
 
-            <!-- PARTIDO 2 -->
-            <div class="partido" id="partido-2">
-                <div class="marcador">
-                    <div class="set"><label>S1</label><input type="number" class="p1-s1"><input type="number" class="p2-s1"></div>
-                    <div class="set"><label>S2</label><input type="number" class="p1-s2"><input type="number" class="p2-s2"></div>
-                    <div class="set"><label>S3</label><input type="number" class="p1-s3"><input type="number" class="p2-s3"></div>
+                    <!-- Partido 2 -->
+                    <div class="partido" id="l3-j1-p2">
+                        <div class="marcador">
+                            <div class="set"><label>S1</label><input type="number" class="p1-s1"><input type="number" class="p2-s1"></div>
+                            <div class="set"><label>S2</label><input type="number" class="p1-s2"><input type="number" class="p2-s2"></div>
+                            <div class="set"><label>S3</label><input type="number" class="p1-s3"><input type="number" class="p2-s3"></div>
+                        </div>
+                        <div class="nombres">
+                            <span class="nombre1">IVÁN/PABLO</span>
+                            <span class="vs">vs</span>
+                            <span class="nombre2">CARLOS/JUST</span>
+                        </div>
+                        <button class="btn-guardar" onclick="guardarPartido('l3-j1-p2')">Guardar</button>
+                    </div>
                 </div>
-                <div class="nombres">
-                    <span class="nombre1">IVÁN/PABLO</span>
-                    <span class="vs">vs</span>
-                    <span class="nombre2">CARLOS/JUST</span>
-                </div>
-                <button class="btn-guardar" onclick="guardarPartido('partido-2')">Guardar</button>
             </div>
+        </section>
 
-        </div>
+        <!-- SECCIONES VACÍAS PARA FUTURAS LIGAS -->
+        <section id="liga-04" class="liga-section" style="display:none;">
+            <h1 class="titulo-liga">LIGA 04</h1>
+            <p class="aviso">Esta liga comenzará próximamente.</p>
+        </section>
+        
+        <section id="liga-05" class="liga-section" style="display:none;"><h1 class="titulo-liga">LIGA 05</h1></section>
+        <section id="liga-06" class="liga-section" style="display:none;"><h1 class="titulo-liga">LIGA 06</h1></section>
     </div>
 
-    <!-- Vinculación del archivo JS externo -->
     <script src="script.js"></script>
 </body>
 </html>
