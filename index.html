@@ -25,23 +25,22 @@
     <h2 style="text-align:center; color:var(--oscuro);">🦖 CALENDARIO PADELSAURIOS S7</h2>
 
     <!-- JORNADA 04/02/2026 -->
-    <div class="jornada">
-    <div class="fecha-header" onclick="toggleJornada(this)">04 DE FEBRERO 2026</div>
-    <div class="partidos-container">
-        <!-- Partido con nombres en vertical -->
-        <div class="partido" style="display: flex; align-items: center; gap: 15px; margin-bottom: 10px;">
-            <div class="nombres" style="display: flex; flex-direction: column; align-items: center; min-width: 120px; font-weight: bold;">
-                <span>MIGUEL/JORGE</span>
-                <span class="vs" style="font-size: 0.8em; color: #888;">VS</span>
-                <span>DANI/ROMÁN</span>
-            </div>
-            
-            <div class="marcador" style="display: flex; gap: 5px;">
-                <div class="set"><label>S1</label><input type="number"><input type="number"></div>
-                <div class="set"><label>S2</label><input type="number"><input type="number"></div>
-                <div class="set"><label>S3</label><input type="number"><input type="number"></div>
-            </div>
-        </div>
+    <div class="partido" style="display: flex; align-items: center; justify-content: flex-start; gap: 15px; margin-bottom: 15px;">
+    <!-- Marcador a la izquierda -->
+    <div class="marcador" style="display: flex; gap: 5px;">
+        <div class="set"><label>S1</label><input type="number" style="width: 30px;"><input type="number" style="width: 30px;"></div>
+        <div class="set"><label>S2</label><input type="number" style="width: 30px;"><input type="number" style="width: 30px;"></div>
+        <div class="set"><label>S3</label><input type="number" style="width: 30px;"><input type="number" style="width: 30px;"></div>
+    </div>
+
+    <!-- Nombres a la derecha alineados verticalmente -->
+    <div class="nombres" style="display: flex; flex-direction: column; align-items: flex-start; line-height: 1.2;">
+        <span style="height: 25px; display: flex; align-items: center;">MIGUEL/JORGE</span>
+        <span class="vs" style="font-size: 0.7em; color: #777; margin-left: 5px;">vs</span>
+        <span style="height: 25px; display: flex; align-items: center;">DANI/ROMÁN</span>
+    </div>
+</div>
+</div>
 
         <!-- Repite la misma estructura para IVÁN/PABLO si quieres consistencia -->
     </div>
