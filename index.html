@@ -25,24 +25,31 @@
     <h2 style="text-align:center; color:var(--oscuro);">🦖 CALENDARIO PADELSAURIOS S7</h2>
 
     <!-- JORNADA 04/02/2026 -->
-    <div class="partido" style="display: flex; align-items: center; justify-content: flex-start; gap: 15px; margin-bottom: 15px;">
-    <!-- Marcador a la izquierda -->
-    <div class="marcador" style="display: flex; gap: 5px;">
-        <div class="set"><label>S1</label><input type="number" style="width: 30px;"><input type="number" style="width: 30px;"></div>
-        <div class="set"><label>S2</label><input type="number" style="width: 30px;"><input type="number" style="width: 30px;"></div>
-        <div class="set"><label>S3</label><input type="number" style="width: 30px;"><input type="number" style="width: 30px;"></div>
+<div class="partido" style="display: flex; align-items: center; gap: 20px; margin-bottom: 20px;">
+    <!-- Marcador -->
+    <div class="marcador" style="display: flex; gap: 10px;">
+        <div class="set" style="display: flex; flex-direction: column; gap: 5px;">
+            <label style="text-align: center; font-size: 0.8em;">S1</label>
+            <input type="number" style="width: 35px; height: 30px;">
+            <input type="number" style="width: 35px; height: 30px;">
+        </div>
+        <div class="set" style="display: flex; flex-direction: column; gap: 5px;">
+            <label style="text-align: center; font-size: 0.8em;">S2</label>
+            <input type="number" style="width: 35px; height: 30px;">
+            <input type="number" style="width: 35px; height: 30px;">
+        </div>
+        <div class="set" style="display: flex; flex-direction: column; gap: 5px;">
+            <label style="text-align: center; font-size: 0.8em;">S3</label>
+            <input type="number" style="width: 35px; height: 30px;">
+            <input type="number" style="width: 35px; height: 30px;">
+        </div>
     </div>
 
-    <!-- Nombres a la derecha alineados verticalmente -->
-    <div class="nombres" style="display: flex; flex-direction: column; align-items: flex-start; line-height: 1.2;">
-        <span style="height: 25px; display: flex; align-items: center;">MIGUEL/JORGE</span>
-        <span class="vs" style="font-size: 0.7em; color: #777; margin-left: 5px;">vs</span>
-        <span style="height: 25px; display: flex; align-items: center;">DANI/ROMÁN</span>
-    </div>
-</div>
-</div>
-
-        <!-- Repite la misma estructura para IVÁN/PABLO si quieres consistencia -->
+    <!-- Nombres alineados con los inputs -->
+    <div class="nombres" style="display: flex; flex-direction: column; justify-content: flex-end; height: 65px; padding-bottom: 2px;">
+        <span style="height: 30px; display: flex; align-items: center; font-weight: bold;">MIGUEL/JORGE</span>
+        <span class="vs" style="height: 5px; font-size: 0.6em; color: #999; margin-left: 2px;">vs</span>
+        <span style="height: 30px; display: flex; align-items: center; font-weight: bold;">DANI/ROMÁN</span>
     </div>
 </div>
 
