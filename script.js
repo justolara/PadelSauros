@@ -1,64 +1,63 @@
-<!-- Importar Firebase desde CDN -->
-<script type="module">
-  import { initializeApp } from "https://www.gstatic.com";
-  import { getDatabase, ref, set, onValue } from "https://www.gstatic.com";
+import { initializeApp } from "firebase/app";
+import { getDatabase, ref, set, onValue } from "firebase/database";
 
-  // TUS DATOS DE FIREBASE (Cópialos de tu consola de Firebase)
-  const firebaseConfig = {
-    apiKey: "TU_API_KEY",
-    authDomain: "tu-proyecto.firebaseapp.com",
-    databaseURL: "https://padelsauros-default-rtdb.europe-west1.firebasedatabase.app/",
-    projectId: "Padelsauros",
-    storageBucket: "tu-proyecto.appspot.com",
-    messagingSenderId: "...",
-    appId: "..."
-  };
+const firebaseConfig = {
+  apiKey: "AIzaSyB07P8AG1WXnOlr0vxHNJFrCBbGTf_v_7M",
+  authDomain: "padelsauros.firebaseapp.com",
+  databaseURL: "https://padelsauros-default-rtdb.europe-west1.firebasedatabase.app",
+  projectId: "padelsauros",
+  storageBucket: "padelsauros.firebasestorage.app",
+  messagingSenderId: "506820255898",
+  appId: "1:506820255898:web:f3b9b75f732afb8036ff23"
+};
 
-  const app = initializeApp(firebaseConfig);
-  const db = getDatabase(app);
+const app = initializeApp(firebaseConfig);
+const db = getDatabase(app);
 
-  // 1. ESCUCHAR CAMBIOS (Para que todos vean lo mismo en tiempo real)
-  const ligaRef = ref(db, 'ligas/liga03');
-  onValue(ligaRef, (snapshot) => {
-    const datos = snapshot.val();
-    if (datos) {
-      Object.keys(datos).forEach(pId => {
-        const container = document.getElementById(pId);
-        if (container) {
-          const inputs = container.querySelectorAll('input');
-          datos[pId].forEach((val, i) => { if(inputs[i]) inputs[i].value = val; });
-        }
-      });
-      actualizarClasificacion(); // Función que ya tienes para calcular puntos
+// Hacer las funciones accesibles desde el HTML
+window.guardarPartido = function(idPartido) {
+    const contenedor = document.getElementById(idPartido);
+    const datos = {
+        s1_p1: contenedor.querySelector('.p1-s1').value,
+        s1_p2: contenedor.querySelector('.p2-s1').value,
+        s2_p1: contenedor.querySelector('.p1-s2').value,
+        s2_p2: contenedor.querySelector('.p2-s2').value,
+        s3_p1: contenedor.querySelector('.p1-s3').value,
+        s3_p2: contenedor.querySelector('.p2-s3').value
+    };
+
+    // Guarda en la ruta: resultados/idPartido
+    set(ref(db, 'resultados/' + idPartido), datos)
+        .then(() => alert("Resultado guardado en Firebase"))
+        .catch((error) => console.error("Error:", error));
+};
+
+// Leer datos automáticamente al cargar
+const resultadosRef = ref(db, 'resultados/');
+onValue(resultadosRef, (snapshot) => {
+    const data = snapshot.val();
+    if (data) {
+        Object.keys(data).forEach(id => {
+            const res = data[id];
+            const div = document.getElementById(id);
+            if(div) {
+                div.querySelector('.p1-s1').value = res.s1_p1;
+                div.querySelector('.p2-s1').value = res.s1_p2;
+                // ... repetir para s2 y s3
+            }
+        });
     }
-  });
+});
 
-  // 2. FUNCIÓN PARA GUARDAR (Global)
-  window.guardarPartido = function(id) {
-    const partido = document.getElementById(id);
-    const valores = Array.from(partido.querySelectorAll('input')).map(i => i.value);
-    
-    // Guardamos en Firebase
-    set(ref(db, 'ligas/liga03/' + id), valores)
-      .then(() => alert("Resultado publicado para todos los usuarios"))
-      .catch((error) => console.error("Error al publicar:", error));
-  };
+// Función básica para cambiar ligas
+window.cambiarLiga = function(ligaId, btn) {
+    document.querySelectorAll('.liga-section').forEach(s => s.classList.remove('active'));
+    document.querySelectorAll('.btn-liga').forEach(b => b.classList.remove('active'));
+    document.getElementById(ligaId).classList.add('active');
+    btn.classList.add('active');
+};
 
-  // 3. TU LÓGICA DE PUNTOS (Adaptada)
-  window.actualizarClasificacion = function() {
-    const parejas = ["MIGUEL/JORGE", "DANI/ROMÁN", "IVÁN/PABLO", "CARLOS/JUST"];
-    let stats = {};
-    parejas.forEach(p => stats[p] = { pj: 0, pg: 0, pp: 0, sf: 0, pts: 0 });
-
-    document.querySelectorAll('.partido').forEach(partido => {
-        const p1_n = partido.querySelector('.nombre1').innerText;
-        const p2_n = partido.querySelector('.nombre2').innerText;
-        let p1_sets = 0, p2_sets = 0, jugado = false;
-
-        const inputs = partido.querySelectorAll('input');
-        // Tu lógica de puntos 1, 0.5, 0...
-        // ... (resto del código de cálculo que ya definimos)
-        renderizarTabla(stats);
-    });
-  };
-</script>
+window.toggleJornada = function(id) {
+    const x = document.getElementById(id);
+    x.style.display = (x.style.display === "none") ? "block" : "none";
+};
