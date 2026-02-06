@@ -7,8 +7,8 @@
   const firebaseConfig = {
     apiKey: "TU_API_KEY",
     authDomain: "tu-proyecto.firebaseapp.com",
-    databaseURL: "https://tu-proyecto.firebaseio.com",
-    projectId: "tu-proyecto",
+    databaseURL: "https://padelsauros-default-rtdb.europe-west1.firebasedatabase.app/",
+    projectId: "Padelsauros",
     storageBucket: "tu-proyecto.appspot.com",
     messagingSenderId: "...",
     appId: "..."
