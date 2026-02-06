@@ -1,55 +1,64 @@
-function actualizarClasificacion() {
-    inicializarStats(); // Reinicia contadores
-    
-    const partidos = document.querySelectorAll('.partido');
-    
-    partidos.forEach(partido => {
-        const p1_nombre = partido.querySelector('.nombre1').innerText;
-        const p2_nombre = partido.querySelector('.nombre2').innerText;
-        
-        let p1_sets_ganados = 0;
-        let p2_sets_ganados = 0;
-        let partidoJugado = false;
+<!-- Importar Firebase desde CDN -->
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com";
+  import { getDatabase, ref, set, onValue } from "https://www.gstatic.com";
 
-        // Recorremos los 3 sets posibles
-        for(let i=1; i<=3; i++) {
-            const s1 = parseInt(partido.querySelector(`.p1-s${i}`).value);
-            const s2 = parseInt(partido.querySelector(`.p2-s${i}`).value);
-            
-            if(!isNaN(s1) && !isNaN(s2)) {
-                partidoJugado = true;
-                if(s1 > s2) { 
-                    p1_sets_ganados++; 
-                    stats[p1_nombre].sf++; 
-                } else if(s2 > s1) { 
-                    p2_sets_ganados++; 
-                    stats[p2_nombre].sf++; 
-                }
-            }
-        }
+  // TUS DATOS DE FIREBASE (Cópialos de tu consola de Firebase)
+  const firebaseConfig = {
+    apiKey: "TU_API_KEY",
+    authDomain: "tu-proyecto.firebaseapp.com",
+    databaseURL: "https://tu-proyecto.firebaseio.com",
+    projectId: "tu-proyecto",
+    storageBucket: "tu-proyecto.appspot.com",
+    messagingSenderId: "...",
+    appId: "..."
+  };
 
-        if(partidoJugado) {
-            stats[p1_nombre].pj++;
-            stats[p2_nombre].pj++;
-            
-            // Lógica de Puntos: 1 Ganar | 0.5 Empatar | 0 Perder
-            if(p1_sets_ganados > p2_sets_ganados) {
-                stats[p1_nombre].pg++;
-                stats[p1_nombre].pts += 1; // Ganador
-                stats[p2_nombre].pp++;     // Perdedor (0 pts)
-            } 
-            else if(p1_sets_ganados < p2_sets_ganados) {
-                stats[p2_nombre].pg++;
-                stats[p2_nombre].pts += 1; // Ganador
-                stats[p1_nombre].pp++;     // Perdedor (0 pts)
-            } 
-            else {
-                // Empate en sets (ej: 1-1 y no se jugó el tercero)
-                stats[p1_nombre].pts += 0.5;
-                stats[p2_nombre].pts += 0.5;
-            }
+  const app = initializeApp(firebaseConfig);
+  const db = getDatabase(app);
+
+  // 1. ESCUCHAR CAMBIOS (Para que todos vean lo mismo en tiempo real)
+  const ligaRef = ref(db, 'ligas/liga03');
+  onValue(ligaRef, (snapshot) => {
+    const datos = snapshot.val();
+    if (datos) {
+      Object.keys(datos).forEach(pId => {
+        const container = document.getElementById(pId);
+        if (container) {
+          const inputs = container.querySelectorAll('input');
+          datos[pId].forEach((val, i) => { if(inputs[i]) inputs[i].value = val; });
         }
+      });
+      actualizarClasificacion(); // Función que ya tienes para calcular puntos
+    }
+  });
+
+  // 2. FUNCIÓN PARA GUARDAR (Global)
+  window.guardarPartido = function(id) {
+    const partido = document.getElementById(id);
+    const valores = Array.from(partido.querySelectorAll('input')).map(i => i.value);
+    
+    // Guardamos en Firebase
+    set(ref(db, 'ligas/liga03/' + id), valores)
+      .then(() => alert("Resultado publicado para todos los usuarios"))
+      .catch((error) => console.error("Error al publicar:", error));
+  };
+
+  // 3. TU LÓGICA DE PUNTOS (Adaptada)
+  window.actualizarClasificacion = function() {
+    const parejas = ["MIGUEL/JORGE", "DANI/ROMÁN", "IVÁN/PABLO", "CARLOS/JUST"];
+    let stats = {};
+    parejas.forEach(p => stats[p] = { pj: 0, pg: 0, pp: 0, sf: 0, pts: 0 });
+
+    document.querySelectorAll('.partido').forEach(partido => {
+        const p1_n = partido.querySelector('.nombre1').innerText;
+        const p2_n = partido.querySelector('.nombre2').innerText;
+        let p1_sets = 0, p2_sets = 0, jugado = false;
+
+        const inputs = partido.querySelectorAll('input');
+        // Tu lógica de puntos 1, 0.5, 0...
+        // ... (resto del código de cálculo que ya definimos)
+        renderizarTabla(stats);
     });
-
-    renderizarTabla();
-}
+  };
+</script>
