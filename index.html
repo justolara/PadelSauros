@@ -10,7 +10,7 @@
         .btn-liga { padding: 10px 20px; cursor: pointer; border: 1px solid #ccc; background: white; font-weight: bold; border-radius: 5px; }
         .btn-liga.active { background: #27ae60; color: white; border-color: #27ae60; }
         .liga-section { display: none; width: 100%; max-width: 600px; }
-        .liga-section.active { display: block; } /* show active league */
+        .liga-section.active { display: block; }
         .jornada { background: white; border: 1px solid #ccc; border-radius: 8px; overflow: hidden; margin-bottom: 20px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
         .fecha-header { cursor: pointer; background: #2c3e50; color: white; padding: 15px; font-weight: bold; text-align: center; }
         .partidos-container { padding: 20px; }
@@ -25,7 +25,6 @@
         .vs { font-size: 0.6em !important; color: #aaa !important; line-height: 5px !important; font-weight: normal !important; }
         .btn-guardar { background: #27ae60; color: white; border: none; padding: 8px 12px; border-radius: 4px; cursor: pointer; font-weight: bold; }
         .ganador { color: #27ae60 !important; }
-        /* Estilos de la tabla de clasificación */
         .clasificacion-container { margin-top: 30px; }
         .tabla-clasificacion th, .tabla-clasificacion td { padding: 10px; text-align: center; border: 1px solid #ddd; }
         .tabla-clasificacion th:first-child, .tabla-clasificacion td:first-child { text-align: left; }
@@ -597,7 +596,100 @@
 
     </div>
 
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-database-compat.js"></script>
+    
     <script>
+        // Configuración de Firebase
+        const firebaseConfig = {
+            apiKey: "AIzaSyB07P8AG1WXnOlr0vxHNJFrCBbGTf_v_7M",
+            authDomain: "padelsauros.firebaseapp.com",
+            databaseURL: "https://padelsauros-default-rtdb.europe-west1.firebasedatabase.app",
+            projectId: "padelsauros",
+            storageBucket: "padelsauros.firebasestorage.app",
+            messagingSenderId: "506820255898",
+            appId: "1:506820255898:web:f3b9b75f732afb8036ff23"
+        };
+
+        // Inicializar Firebase
+        firebase.initializeApp(firebaseConfig);
+        const database = firebase.database();
+
+        // Función para guardar partido con Firebase
+        function guardarPartido(id) {
+            const cont = document.getElementById(id);
+            if (!cont) return;
+            
+            const datos = {
+                p1: {
+                    s1: cont.querySelector('.p1-s1').value,
+                    s2: cont.querySelector('.p1-s2').value,
+                    s3: cont.querySelector('.p1-s3').value
+                },
+                p2: {
+                    s1: cont.querySelector('.p2-s1').value,
+                    s2: cont.querySelector('.p2-s2').value,
+                    s3: cont.querySelector('.p2-s3').value
+                }
+            };
+
+            // Lógica para determinar ganador
+            const n1 = cont.querySelector('.nombre1');
+            const n2 = cont.querySelector('.nombre2');
+            let s1 = 0, s2 = 0;
+            
+            for (let i = 1; i <= 3; i++) {
+                const v1 = parseInt(datos.p1[`s${i}`]) || 0;
+                const v2 = parseInt(datos.p2[`s${i}`]) || 0;
+                if (v1 > v2) s1++;
+                else if (v2 > v1) s2++;
+            }
+            
+            if (n1) n1.classList.remove('ganador');
+            if (n2) n2.classList.remove('ganador');
+            if (s1 >= 2 && n1) n1.classList.add('ganador');
+            else if (s2 >= 2 && n2) n2.classList.add('ganador');
+
+            // Guardar en Firebase
+            database.ref('resultados/' + id).set(datos)
+                .then(() => {
+                    alert("✅ ¡Resultado guardado en la nube!");
+                    // Recalcular clasificación
+                    const ligaSection = cont.closest('.liga-section');
+                    if (ligaSection) generarClasificacion(ligaSection.id);
+                })
+                .catch((error) => alert("❌ Error: " + error.message));
+        }
+
+        // Leer datos en tiempo real de Firebase
+        database.ref('resultados/').on('value', (snapshot) => {
+            const data = snapshot.val();
+            if (data) {
+                Object.keys(data).forEach(id => {
+                    const partidoDiv = document.getElementById(id);
+                    if (partidoDiv && data[id]) {
+                        const p1 = data[id].p1 || {};
+                        const p2 = data[id].p2 || {};
+                        
+                        const p1s1 = partidoDiv.querySelector('.p1-s1');
+                        const p1s2 = partidoDiv.querySelector('.p1-s2');
+                        const p1s3 = partidoDiv.querySelector('.p1-s3');
+                        const p2s1 = partidoDiv.querySelector('.p2-s1');
+                        const p2s2 = partidoDiv.querySelector('.p2-s2');
+                        const p2s3 = partidoDiv.querySelector('.p2-s3');
+                        
+                        if (p1s1) p1s1.value = p1.s1 || '';
+                        if (p1s2) p1s2.value = p1.s2 || '';
+                        if (p1s3) p1s3.value = p1.s3 || '';
+                        if (p2s1) p2s1.value = p2.s1 || '';
+                        if (p2s2) p2s2.value = p2.s2 || '';
+                        if (p2s3) p2s3.value = p2.s3 || '';
+                    }
+                });
+            }
+        });
+
         function toggleJornada(id) {
             const el = document.getElementById(id);
             if (!el) return;
@@ -612,33 +704,6 @@
             if (ligaEl) ligaEl.classList.add('active');
             if (btn) btn.classList.add('active');
             generarClasificacion(idLiga); // Recalcula al cambiar de liga
-        }
-
-        function guardarPartido(id) {
-            const cont = document.getElementById(id);
-            if (!cont) return;
-            const n1 = cont.querySelector('.nombre1');
-            const n2 = cont.querySelector('.nombre2');
-            let s1 = 0, s2 = 0;
-            for (let i = 1; i <= 3; i++) {
-                const el1 = cont.querySelector(`.p1-s${i}`);
-                const el2 = cont.querySelector(`.p2-s${i}`);
-                const v1 = el1 ? parseInt(el1.value, 10) : NaN;
-                const v2 = el2 ? parseInt(el2.value, 10) : NaN;
-                if (!isNaN(v1) && !isNaN(v2)) {
-                    if (v1 > v2) s1++;
-                    else if (v2 > v1) s2++;
-                }
-            }
-            if (n1) n1.classList.remove('ganador');
-            if (n2) n2.classList.remove('ganador');
-            if (s1 >= 2 && n1) { n1.classList.add('ganador'); }
-            else if (s2 >= 2 && n2) { n2.classList.add('ganador'); }
-
-            // Recalcular la clasificación después de guardar
-            const ligaSection = cont.closest('.liga-section');
-            const ligaId = ligaSection ? ligaSection.id : null;
-            if (ligaId) generarClasificacion(ligaId);
         }
 
         function generarClasificacion(ligaId) {
