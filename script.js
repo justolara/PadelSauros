@@ -1,5 +1,5 @@
-import { initializeApp } from "https://www.gstatic.com";
-import { getDatabase, ref, set, onValue } from "https://www.gstatic.com";
+import { initializeApp } from "firebase/app"; // Correct import for initializeApp
+import { getDatabase, ref, set, onValue } from "firebase/database"; // Correct import for Realtime Database functions
 
 const firebaseConfig = {
   apiKey: "AIzaSyB07P8AG1WXnOlr0vxHNJFrCBbGTf_v_7M",
