@@ -1,5 +1,5 @@
-import { initializeApp } from "firebase/app";
-import { getDatabase, ref, set, onValue } from "firebase/database";
+import { initializeApp } from "https://www.gstatic.com";
+import { getDatabase, ref, set, onValue } from "https://www.gstatic.com";
 
 const firebaseConfig = {
   apiKey: "AIzaSyB07P8AG1WXnOlr0vxHNJFrCBbGTf_v_7M",
@@ -14,42 +14,46 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getDatabase(app);
 
-// Hacer las funciones accesibles desde el HTML
+// FUNCION PARA GUARDAR (Se vincula al botón Guardar)
 window.guardarPartido = function(idPartido) {
-    const contenedor = document.getElementById(idPartido);
+    const p = document.getElementById(idPartido);
     const datos = {
-        s1_p1: contenedor.querySelector('.p1-s1').value,
-        s1_p2: contenedor.querySelector('.p2-s1').value,
-        s2_p1: contenedor.querySelector('.p1-s2').value,
-        s2_p2: contenedor.querySelector('.p2-s2').value,
-        s3_p1: contenedor.querySelector('.p1-s3').value,
-        s3_p2: contenedor.querySelector('.p2-s3').value
+        p1: {
+            s1: p.querySelector('.p1-s1').value,
+            s2: p.querySelector('.p1-s2').value,
+            s3: p.querySelector('.p1-s3').value
+        },
+        p2: {
+            s1: p.querySelector('.p2-s1').value,
+            s2: p.querySelector('.p2-s2').value,
+            s3: p.querySelector('.p2-s3').value
+        }
     };
 
-    // Guarda en la ruta: resultados/idPartido
     set(ref(db, 'resultados/' + idPartido), datos)
-        .then(() => alert("Resultado guardado en Firebase"))
-        .catch((error) => console.error("Error:", error));
+        .then(() => alert("✅ ¡Resultado guardado en la nube!"))
+        .catch((error) => alert("❌ Error: " + error.message));
 };
 
-// Leer datos automáticamente al cargar
-const resultadosRef = ref(db, 'resultados/');
-onValue(resultadosRef, (snapshot) => {
+// LEER DATOS EN TIEMPO REAL (Para que no se borren al refrescar)
+onValue(ref(db, 'resultados/'), (snapshot) => {
     const data = snapshot.val();
     if (data) {
         Object.keys(data).forEach(id => {
-            const res = data[id];
-            const div = document.getElementById(id);
-            if(div) {
-                div.querySelector('.p1-s1').value = res.s1_p1;
-                div.querySelector('.p2-s1').value = res.s1_p2;
-                // ... repetir para s2 y s3
+            const partidoDiv = document.getElementById(id);
+            if (partidoDiv) {
+                partidoDiv.querySelector('.p1-s1').value = data[id].p1.s1;
+                partidoDiv.querySelector('.p1-s2').value = data[id].p1.s2;
+                partidoDiv.querySelector('.p1-s3').value = data[id].p1.s3;
+                partidoDiv.querySelector('.p2-s1').value = data[id].p2.s1;
+                partidoDiv.querySelector('.p2-s2').value = data[id].p2.s2;
+                partidoDiv.querySelector('.p2-s3').value = data[id].p2.s3;
             }
         });
     }
 });
 
-// Función básica para cambiar ligas
+// FUNCIONES DE INTERFAZ
 window.cambiarLiga = function(ligaId, btn) {
     document.querySelectorAll('.liga-section').forEach(s => s.classList.remove('active'));
     document.querySelectorAll('.btn-liga').forEach(b => b.classList.remove('active'));
@@ -59,5 +63,5 @@ window.cambiarLiga = function(ligaId, btn) {
 
 window.toggleJornada = function(id) {
     const x = document.getElementById(id);
-    x.style.display = (x.style.display === "none") ? "block" : "none";
+    x.style.display = (x.style.display === "none" || x.style.display === "") ? "block" : "none";
 };
