@@ -26,8 +26,12 @@
         .btn-guardar { background: #27ae60; color: white; border: none; padding: 8px 12px; border-radius: 4px; cursor: pointer; font-weight: bold; }
         .ganador { color: #27ae60 !important; }
         .clasificacion-container { margin-top: 30px; }
-        .tabla-clasificacion th, .tabla-clasificacion td { padding: 10px; text-align: center; border: 1px solid #ddd; }
-        .tabla-clasificacion th:first-child, .tabla-clasificacion td:first-child { text-align: left; }
+        .tabla-clasificacion { width: 100%; border-collapse: collapse; }
+        .tabla-clasificacion th, .tabla-clasificacion td { padding: 12px; text-align: center; border: 1px solid #ddd; }
+        .tabla-clasificacion th:first-child, .tabla-clasificacion td:first-child { text-align: left; font-weight: bold; }
+        .tabla-clasificacion th { background: #f8f9fa; font-weight: bold; }
+        .tabla-clasificacion tr:nth-child(even) { background: #f8f9fa; }
+        .posicion { font-weight: bold; color: #27ae60; }
     </style>
 </head>
 <body>
@@ -40,7 +44,7 @@
         <button class="btn-liga" onclick="cambiarLiga('liga06', this)">LIGA 06</button>
     </div>
 
-    <!-- SECCIÓN LIGA 03 (Visible / Completa) -->
+    <!-- SECCIÓN LIGA 03 -->
     <div id="liga03" class="liga-section active">
         <h2 style="text-align: center; color: #2c3e50;">LIGA 03</h2>
         <!-- JORNADA 04/02/2026 -->
@@ -146,15 +150,28 @@
         </div>
         
         <div class="clasificacion-container">
-            <table class="tabla-clasificacion" style="width: 100%;">
-                <thead><tr style="background: #eee;"><th>Pareja</th><th>PJ</th><th>PG</th><th>PE</th><th>PP</th><th>Puntos</th></tr></thead>
+            <h3 style="text-align: center; color: #2c3e50; margin-bottom: 15px;">Tabla de Clasificación</h3>
+            <table class="tabla-clasificacion">
+                <thead>
+                    <tr style="background: #2c3e50; color: white;">
+                        <th>Pos</th>
+                        <th>Pareja</th>
+                        <th>PJ</th>
+                        <th>PG</th>
+                        <th>PE</th>
+                        <th>PP</th>
+                        <th>Puntos</th>
+                    </tr>
+                </thead>
                 <tbody id="cuerpo-tabla-liga03"></tbody>
             </table>
-            <p style="text-align: center; margin-top: 15px;"><button onclick="generarClasificacion('liga03')">Recalcular Clasificación</button></p>
+            <p style="text-align: center; margin-top: 15px;">
+                <button onclick="generarClasificacion('liga03')" style="background: #3498db; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer;">Recalcular Clasificación</button>
+            </p>
         </div>
     </div>
 
-    <!-- SECCIÓN LIGA 04 (Visible / Completa) -->
+    <!-- SECCIÓN LIGA 04 -->
     <div id="liga04" class="liga-section">
         <h2 style="text-align: center; color: #2c3e50;">LIGA 04</h2>
         <!-- JORNADA 18/03/2026 -->
@@ -260,15 +277,28 @@
         </div>
         
         <div class="clasificacion-container">
-            <table class="tabla-clasificacion" style="width: 100%;">
-                <thead><tr style="background: #eee;"><th>Pareja</th><th>PJ</th><th>PG</th><th>PE</th><th>PP</th><th>Puntos</th></tr></thead>
+            <h3 style="text-align: center; color: #2c3e50; margin-bottom: 15px;">Tabla de Clasificación</h3>
+            <table class="tabla-clasificacion">
+                <thead>
+                    <tr style="background: #2c3e50; color: white;">
+                        <th>Pos</th>
+                        <th>Pareja</th>
+                        <th>PJ</th>
+                        <th>PG</th>
+                        <th>PE</th>
+                        <th>PP</th>
+                        <th>Puntos</th>
+                    </tr>
+                </thead>
                 <tbody id="cuerpo-tabla-liga04"></tbody>
             </table>
-            <p style="text-align: center; margin-top: 15px;"><button onclick="generarClasificacion('liga04')">Recalcular Clasificación</button></p>
+            <p style="text-align: center; margin-top: 15px;">
+                <button onclick="generarClasificacion('liga04')" style="background: #3498db; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer;">Recalcular Clasificación</button>
+            </p>
         </div>
     </div>
 
-    <!-- SECCIÓN LIGA 05 (Visible, Completa) -->
+    <!-- SECCIÓN LIGA 05 -->
     <div id="liga05" class="liga-section">
         <h2 style="text-align: center; color: #2c3e50;">LIGA 05</h2>
 
@@ -423,15 +453,28 @@
         </div>
 
         <div class="clasificacion-container">
-            <table class="tabla-clasificacion" style="width: 100%;">
-                <thead><tr style="background: #eee;"><th>Pareja</th><th>PJ</th><th>PG</th><th>PE</th><th>PP</th><th>Puntos</th></tr></thead>
+            <h3 style="text-align: center; color: #2c3e50; margin-bottom: 15px;">Tabla de Clasificación</h3>
+            <table class="tabla-clasificacion">
+                <thead>
+                    <tr style="background: #2c3e50; color: white;">
+                        <th>Pos</th>
+                        <th>Pareja</th>
+                        <th>PJ</th>
+                        <th>PG</th>
+                        <th>PE</th>
+                        <th>PP</th>
+                        <th>Puntos</th>
+                    </tr>
+                </thead>
                 <tbody id="cuerpo-tabla-liga05"></tbody>
             </table>
-            <p style="text-align: center; margin-top: 15px;"><button onclick="generarClasificacion('liga05')">Recalcular Clasificación</button></p>
+            <p style="text-align: center; margin-top: 15px;">
+                <button onclick="generarClasificacion('liga05')" style="background: #3498db; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer;">Recalcular Clasificación</button>
+            </p>
         </div>
     </div>
 
-    <!-- SECCIÓN LIGA 06 (Visible y Completa) -->
+    <!-- SECCIÓN LIGA 06 -->
     <div id="liga06" class="liga-section">
         <h2 style="text-align: center; color: #2c3e50;">LIGA 06</h2>
 
@@ -586,14 +629,25 @@
         </div>
 
         <div class="clasificacion-container">
-            <h3 style="margin-top: 20px; text-align: center; border-bottom: 1px solid #ccc; padding-bottom: 10px;">Tabla de Clasificación</h3>
-            <table class="tabla-clasificacion" style="width: 100%;" >
-                <thead><tr style="background: #eee;"><th>Pareja</th><th>PJ</th><th>PG</th><th>PE</th><th>PP</th><th>Puntos</th></tr></thead>
+            <h3 style="text-align: center; color: #2c3e50; margin-bottom: 15px;">Tabla de Clasificación</h3>
+            <table class="tabla-clasificacion">
+                <thead>
+                    <tr style="background: #2c3e50; color: white;">
+                        <th>Pos</th>
+                        <th>Pareja</th>
+                        <th>PJ</th>
+                        <th>PG</th>
+                        <th>PE</th>
+                        <th>PP</th>
+                        <th>Puntos</th>
+                    </tr>
+                </thead>
                 <tbody id="cuerpo-tabla-liga06"></tbody>
             </table>
-            <p style="text-align: center; margin-top: 15px;"><button onclick="generarClasificacion('liga06')">Recalcular Clasificación</button></p>
+            <p style="text-align: center; margin-top: 15px;">
+                <button onclick="generarClasificacion('liga06')" style="background: #3498db; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer;">Recalcular Clasificación</button>
+            </p>
         </div>
-
     </div>
 
     <!-- Firebase SDK -->
@@ -654,12 +708,215 @@
             // Guardar en Firebase
             database.ref('resultados/' + id).set(datos)
                 .then(() => {
-                    alert("✅ ¡Resultado guardado en la nube!");
-                    // Recalcular clasificación
+                    // Mostrar notificación más sutil
+                    mostrarNotificacion("✅ ¡Resultado guardado!");
+                    
+                    // Recalcular clasificación automáticamente
                     const ligaSection = cont.closest('.liga-section');
-                    if (ligaSection) generarClasificacion(ligaSection.id);
+                    if (ligaSection) {
+                        setTimeout(() => {
+                            generarClasificacion(ligaSection.id);
+                        }, 500);
+                    }
                 })
-                .catch((error) => alert("❌ Error: " + error.message));
+                .catch((error) => {
+                    console.error("Error al guardar:", error);
+                    alert("❌ Error: " + error.message);
+                });
+        }
+
+        // Función para mostrar notificaciones sutiles
+        function mostrarNotificacion(mensaje) {
+            const notificacion = document.createElement('div');
+            notificacion.style.cssText = `
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                background: #27ae60;
+                color: white;
+                padding: 15px 20px;
+                border-radius: 5px;
+                z-index: 1000;
+                font-weight: bold;
+                box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+                transform: translateX(100%);
+                transition: transform 0.3s ease;
+            `;
+            notificacion.textContent = mensaje;
+            document.body.appendChild(notificacion);
+            
+            setTimeout(() => {
+                notificacion.style.transform = 'translateX(0)';
+            }, 100);
+            
+            setTimeout(() => {
+                notificacion.style.transform = 'translateX(100%)';
+                setTimeout(() => {
+                    document.body.removeChild(notificacion);
+                }, 300);
+            }, 2000);
+        }
+
+        // Función para generar y guardar clasificación
+        function generarClasificacion(ligaId) {
+            const ligaElemento = document.getElementById(ligaId);
+            if (!ligaElemento) return;
+            
+            const partidos = ligaElemento.querySelectorAll('.partido');
+            const estadisticas = {};
+
+            partidos.forEach(partido => {
+                const nombre1El = partido.querySelector('.nombre1');
+                const nombre2El = partido.querySelector('.nombre2');
+                if (!nombre1El || !nombre2El) return;
+                
+                const nombre1 = nombre1El.innerText.trim();
+                const nombre2 = nombre2El.innerText.trim();
+                
+                if (!estadisticas[nombre1]) estadisticas[nombre1] = { pj: 0, pg: 0, pe: 0, pp: 0, puntos: 0 };
+                if (!estadisticas[nombre2]) estadisticas[nombre2] = { pj: 0, pg: 0, pe: 0, pp: 0, puntos: 0 };
+
+                let setsP1 = 0, setsP2 = 0, setsCompletados = 0;
+                for (let i = 1; i <= 3; i++) {
+                    const el1 = partido.querySelector(`.p1-s${i}`);
+                    const el2 = partido.querySelector(`.p2-s${i}`);
+                    const v1 = el1 ? parseInt(el1.value, 10) : NaN;
+                    const v2 = el2 ? parseInt(el2.value, 10) : NaN;
+                    if (!isNaN(v1) && !isNaN(v2)) {
+                        setsCompletados++;
+                        if (v1 > v2) setsP1++;
+                        else if (v2 > v1) setsP2++;
+                    }
+                }
+
+                if (setsCompletados > 0) {
+                    estadisticas[nombre1].pj++; estadisticas[nombre2].pj++;
+                    if (setsP1 > setsP2) {
+                        estadisticas[nombre1].pg++; estadisticas[nombre1].puntos += 1; estadisticas[nombre2].pp++;
+                    } else if (setsP2 > setsP1) {
+                        estadisticas[nombre2].pg++; estadisticas[nombre2].puntos += 1; estadisticas[nombre1].pp++;
+                    } else {
+                        estadisticas[nombre1].pe++; estadisticas[nombre1].puntos += 0.5;
+                        estadisticas[nombre2].pe++; estadisticas[nombre2].puntos += 0.5;
+                    }
+                }
+            });
+
+            // Ordenar por puntos (descendente), luego por partidos ganados (descendente)
+            const ranking = Object.keys(estadisticas).map(nombre => ({ 
+                nombre, 
+                ...estadisticas[nombre] 
+            })).sort((a, b) => {
+                // Primero ordenar por puntos
+                if (b.puntos !== a.puntos) {
+                    return b.puntos - a.puntos;
+                }
+                // Si hay empate en puntos, ordenar por partidos ganados
+                if (b.pg !== a.pg) {
+                    return b.pg - a.pg;
+                }
+                // Si aún hay empate, ordenar por diferencia de partidos (PG - PP)
+                const diffA = a.pg - a.pp;
+                const diffB = b.pg - b.pp;
+                return diffB - diffA;
+            });
+
+            // Guardar clasificación en Firebase
+            const clasificacionData = {};
+            ranking.forEach((pareja, index) => {
+                clasificacionData[pareja.nombre] = {
+                    ...pareja,
+                    posicion: index + 1
+                };
+            });
+
+            database.ref('clasificacion/' + ligaId).set(clasificacionData)
+                .then(() => {
+                    console.log('Clasificación guardada en Firebase');
+                })
+                .catch((error) => {
+                    console.error('Error al guardar clasificación:', error);
+                });
+
+            // Actualizar tabla
+            const tbody = document.getElementById(`cuerpo-tabla-${ligaId}`);
+            if (tbody) {
+                tbody.innerHTML = '';
+                ranking.forEach((pareja, index) => {
+                    const fila = tbody.insertRow();
+                    const esPrimero = index === 0;
+                    const esSegundo = index === 1;
+                    const esTercero = index === 2;
+                    
+                    let estiloFila = '';
+                    if (esPrimero) estiloFila = 'background: linear-gradient(90deg, #f1c40f, #f39c12); color: white; font-weight: bold;';
+                    else if (esSegundo) estiloFila = 'background: linear-gradient(90deg, #95a5a6, #7f8c8d); color: white; font-weight: bold;';
+                    else if (esTercero) estiloFila = 'background: linear-gradient(90deg, #cd7f32, #b8860b); color: white; font-weight: bold;';
+                    
+                    fila.style.cssText = estiloFila;
+                    fila.innerHTML = `
+                        <td class="posicion">${index + 1} ${esPrimero ? '🥇' : esSegundo ? '🥈' : esTercero ? '🥉' : ''}</td>
+                        <td style="padding: 10px; font-weight: bold;">${pareja.nombre}</td>
+                        <td>${pareja.pj}</td>
+                        <td>${pareja.pg}</td>
+                        <td>${pareja.pe}</td>
+                        <td>${pareja.pp}</td>
+                        <td style="font-weight: bold; font-size: 1.1em;">${pareja.puntos}</td>
+                    `;
+                });
+            }
+        }
+
+        // Cargar clasificación desde Firebase al iniciar
+        function cargarClasificacion(ligaId) {
+            database.ref('clasificacion/' + ligaId).once('value')
+                .then((snapshot) => {
+                    const data = snapshot.val();
+                    if (data) {
+                        const tbody = document.getElementById(`cuerpo-tabla-${ligaId}`);
+                        if (tbody) {
+                            tbody.innerHTML = '';
+                            
+                            // Convertir a array y ordenar
+                            const ranking = Object.keys(data).map(nombre => ({
+                                nombre,
+                                ...data[nombre]
+                            })).sort((a, b) => {
+                                if (b.puntos !== a.puntos) return b.puntos - a.puntos;
+                                if (b.pg !== a.pg) return b.pg - a.pg;
+                                const diffA = a.pg - a.pp;
+                                const diffB = b.pg - b.pp;
+                                return diffB - diffA;
+                            });
+
+                            ranking.forEach((pareja, index) => {
+                                const fila = tbody.insertRow();
+                                const esPrimero = index === 0;
+                                const esSegundo = index === 1;
+                                const esTercero = index === 2;
+                                
+                                let estiloFila = '';
+                                if (esPrimero) estiloFila = 'background: linear-gradient(90deg, #f1c40f, #f39c12); color: white; font-weight: bold;';
+                                else if (esSegundo) estiloFila = 'background: linear-gradient(90deg, #95a5a6, #7f8c8d); color: white; font-weight: bold;';
+                                else if (esTercero) estiloFila = 'background: linear-gradient(90deg, #cd7f32, #b8860b); color: white; font-weight: bold;';
+                                
+                                fila.style.cssText = estiloFila;
+                                fila.innerHTML = `
+                                    <td class="posicion">${index + 1} ${esPrimero ? '🥇' : esSegundo ? '🥈' : esTercero ? '🥉' : ''}</td>
+                                    <td style="padding: 10px; font-weight: bold;">${pareja.nombre}</td>
+                                    <td>${pareja.pj}</td>
+                                    <td>${pareja.pg}</td>
+                                    <td>${pareja.pe}</td>
+                                    <td>${pareja.pp}</td>
+                                    <td style="font-weight: bold; font-size: 1.1em;">${pareja.puntos}</td>
+                                `;
+                            });
+                        }
+                    }
+                })
+                .catch((error) => {
+                    console.error('Error al cargar clasificación:', error);
+                });
         }
 
         // Leer datos en tiempo real de Firebase
@@ -703,61 +960,9 @@
             const ligaEl = document.getElementById(idLiga);
             if (ligaEl) ligaEl.classList.add('active');
             if (btn) btn.classList.add('active');
-            generarClasificacion(idLiga); // Recalcula al cambiar de liga
-        }
-
-        function generarClasificacion(ligaId) {
-            const ligaElemento = document.getElementById(ligaId);
-            if (!ligaElemento) return;
-            const partidos = ligaElemento.querySelectorAll('.partido');
-            const estadisticas = {};
-
-            partidos.forEach(partido => {
-                const nombre1El = partido.querySelector('.nombre1');
-                const nombre2El = partido.querySelector('.nombre2');
-                if (!nombre1El || !nombre2El) return;
-                const nombre1 = nombre1El.innerText.trim();
-                const nombre2 = nombre2El.innerText.trim();
-                if (!estadisticas[nombre1]) estadisticas[nombre1] = { pj: 0, pg: 0, pe: 0, pp: 0, puntos: 0 };
-                if (!estadisticas[nombre2]) estadisticas[nombre2] = { pj: 0, pg: 0, pe: 0, pp: 0, puntos: 0 };
-
-                let setsP1 = 0, setsP2 = 0, setsCompletados = 0;
-                for (let i = 1; i <= 3; i++) {
-                    const el1 = partido.querySelector(`.p1-s${i}`);
-                    const el2 = partido.querySelector(`.p2-s${i}`);
-                    const v1 = el1 ? parseInt(el1.value, 10) : NaN;
-                    const v2 = el2 ? parseInt(el2.value, 10) : NaN;
-                    if (!isNaN(v1) && !isNaN(v2)) {
-                        setsCompletados++;
-                        if (v1 > v2) setsP1++;
-                        else if (v2 > v1) setsP2++;
-                    }
-                }
-
-                if (setsCompletados > 0) {
-                    estadisticas[nombre1].pj++; estadisticas[nombre2].pj++;
-                    if (setsP1 > setsP2) {
-                        estadisticas[nombre1].pg++; estadisticas[nombre1].puntos += 1; estadisticas[nombre2].pp++;
-                    } else if (setsP2 > setsP1) {
-                        estadisticas[nombre2].pg++; estadisticas[nombre2].puntos += 1; estadisticas[nombre1].pp++;
-                    } else {
-                        estadisticas[nombre1].pe++; estadisticas[nombre1].puntos += 0.5;
-                        estadisticas[nombre2].pe++; estadisticas[nombre2].puntos += 0.5;
-                    }
-                }
-            });
-
-            const ranking = Object.keys(estadisticas).map(nombre => ({ nombre, ...estadisticas[nombre] }));
-            ranking.sort((a, b) => b.puntos - a.puntos || b.pg - a.pg);
-
-            const tbody = document.getElementById(`cuerpo-tabla-${ligaId}`);
-            if (tbody) {
-                tbody.innerHTML = '';
-                ranking.forEach(pareja => {
-                    const fila = tbody.insertRow();
-                    fila.innerHTML = `<td style="padding: 10px;">${pareja.nombre}</td><td>${pareja.pj}</td><td>${pareja.pg}</td><td>${pareja.pe}</td><td>${pareja.pp}</td><td>${pareja.puntos}</td>`;
-                });
-            }
+            
+            // Cargar clasificación de la liga seleccionada
+            cargarClasificacion(idLiga);
         }
         
         document.addEventListener('DOMContentLoaded', (event) => {
@@ -768,7 +973,9 @@
                 document.querySelectorAll('.btn-liga').forEach(b => {
                     if (b.getAttribute('onclick') && b.getAttribute('onclick').includes(id)) b.classList.add('active');
                 });
-                generarClasificacion(ligaActiva.id);
+                
+                // Cargar clasificación inicial
+                cargarClasificacion(ligaActiva.id);
             }
         });
     </script>
