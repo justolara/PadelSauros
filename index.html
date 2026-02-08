@@ -15,11 +15,10 @@
         .fecha-header { cursor: pointer; background: #2c3e50; color: white; padding: 15px; font-weight: bold; text-align: center; }
         .partidos-container { padding: 20px; }
         
-        /* CORRECCIÓN AQUÍ */
         .partido { 
             display: flex; 
-            flex-direction: row; /* Vuelve a ser fila para sets y nombres */
-            flex-wrap: wrap;     /* Permite que los elementos salten de línea si no caben */
+            flex-direction: row; 
+            flex-wrap: wrap;     
             align-items: center; 
             gap: 15px; 
             margin-bottom: 25px; 
@@ -28,25 +27,40 @@
         }
         
         .partido:last-child { border-bottom: none; padding-bottom: 0; margin-bottom: 0; }
-        .marcador { display: flex; gap: 10px; }
-        .set { display: flex; flex-direction: column; gap: 5px; align-items: center; }
-        .set label { font-size: 0.7em; color: #666; }
-        input[type="number"] { width: 45px; height: 30px; text-align: center; border: 1px solid #ccc; border-radius: 4px; }
+        
+        /* Ajustes para ganar espacio horizontal */
+        .marcador { display: flex; gap: 5px; /* Reducido de 10px a 5px */ }
+        .set { display: flex; flex-direction: column; gap: 2px; align-items: center; /* Reducido de 5px a 2px */ }
+        .set label { font-size: 0.6em; color: #666; }
+        
+        /* Inputs más estrechos */
+        input[type="number"] { 
+            width: 36px; /* Reducido de 45px a 36px */
+            height: 28px; /* Reducido ligeramente de 30px */
+            text-align: center; 
+            border: 1px solid #ccc; 
+            border-radius: 4px; 
+            font-size: 0.9em;
+        }
         
         .nombres { 
             display: flex; 
             flex-direction: column; 
             justify-content: space-between; 
-            height: 65px; 
+            height: 60px; /* Ajustado ligeramente a 60px para coincidir con inputs más pequeños */
             flex-grow: 1; 
-            margin-top: 0; /* Aseguramos que esté alineado horizontalmente */
+            margin-top: 0; 
             text-align: center; 
         }
         
-        .nombres span { font-weight: bold; line-height: 30px; font-size: 0.95em; }
-        .vs { font-size: 0.6em !important; color: #aaa !important; line-height: 5px !important; font-weight: normal !important; }
+        /* Texto más compacto */
+        .nombres span { 
+            font-weight: bold; 
+            line-height: 26px; /* Reducido de 30px */
+            font-size: 0.85em; /* Reducido ligeramente */
+        }
+        .vs { font-size: 0.5em !important; color: #aaa !important; line-height: 4px !important; font-weight: normal !important; }
         
-        /* Estilos del botón para que ocupe toda la línea debajo */
         .btn-guardar { 
             background: #27ae60; 
             color: white; 
@@ -55,9 +69,10 @@
             border-radius: 4px; 
             cursor: pointer; 
             font-weight: bold; 
-            width: 100%;       /* Ocupa todo el ancho disponible */
-            margin-top: 10px;   /* Espacio superior */
+            width: 100%;       
+            margin-top: 10px;   
             box-sizing: border-box;
+            font-size: 0.9em;
         }
 
         .ganador { color: #27ae60 !important; }
@@ -69,7 +84,6 @@
         .tabla-clasificacion tr:nth-child(even) { background: #f8f9fa; }
         .posicion { font-weight: bold; color: #27ae60; }
         
-        /* Estilo específico para el ranking global */
         #ranking-global h2 { color: #8e44ad; }
     </style>
 </head>
