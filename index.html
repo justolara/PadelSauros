@@ -6,7 +6,7 @@
     <title>Ligas de Pádel 2026</title>
     <style>
         body { font-family: sans-serif; background-color: #f4f4f4; display: flex; flex-direction: column; align-items: center; padding: 20px; }
-        .selector-ligas { margin-bottom: 20px; display: flex; gap: 10px; }
+        .selector-ligas { margin-bottom: 20px; display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; }
         .btn-liga { padding: 10px 20px; cursor: pointer; border: 1px solid #ccc; background: white; font-weight: bold; border-radius: 5px; }
         .btn-liga.active { background: #27ae60; color: white; border-color: #27ae60; }
         .liga-section { display: none; width: 100%; max-width: 600px; }
@@ -32,6 +32,9 @@
         .tabla-clasificacion th { background: #f8f9fa; font-weight: bold; }
         .tabla-clasificacion tr:nth-child(even) { background: #f8f9fa; }
         .posicion { font-weight: bold; color: #27ae60; }
+        
+        /* Estilo específico para el ranking global para que destaque un poco */
+        #ranking-global h2 { color: #8e44ad; }
     </style>
 </head>
 <body>
@@ -42,6 +45,7 @@
         <button class="btn-liga" onclick="cambiarLiga('liga04', this)">LIGA 04</button>
         <button class="btn-liga" onclick="cambiarLiga('liga05', this)">LIGA 05</button>
         <button class="btn-liga" onclick="cambiarLiga('liga06', this)">LIGA 06</button>
+        <button class="btn-liga" onclick="cambiarLiga('ranking-global', this)">RANKING GLOBAL</button>
     </div>
 
     <!-- SECCIÓN LIGA 03 -->
@@ -650,6 +654,29 @@
         </div>
     </div>
 
+    <!-- NUEVA SECCIÓN: RANKING GLOBAL INDIVIDUAL -->
+    <div id="ranking-global" class="liga-section">
+        <h2 style="text-align: center; color: #8e44ad;">RANKING GLOBAL INDIVIDUAL</h2>
+        <div class="clasificacion-container">
+            <p style="text-align: center; color: #666; margin-bottom: 20px;">
+                Suma de puntos obtenidos en todas las ligas (L03, L04, L05, L06).
+            </p>
+            <table class="tabla-clasificacion">
+                <thead>
+                    <tr style="background: #8e44ad; color: white;">
+                        <th>Pos</th>
+                        <th>Jugador</th>
+                        <th>Puntos Totales</th>
+                    </tr>
+                </thead>
+                <tbody id="cuerpo-tabla-global"></tbody>
+            </table>
+            <p style="text-align: center; margin-top: 15px;">
+                <button onclick="generarRankingIndividual()" style="background: #8e44ad; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer;">Actualizar Ranking</button>
+            </p>
+        </div>
+    </div>
+
     <!-- Firebase SDK -->
     <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-database-compat.js"></script>
@@ -713,7 +740,7 @@
                     
                     // Recalcular clasificación automáticamente
                     const ligaSection = cont.closest('.liga-section');
-                    if (ligaSection) {
+                    if (ligaSection && ligaSection.id !== 'ranking-global') {
                         setTimeout(() => {
                             generarClasificacion(ligaSection.id);
                         }, 500);
@@ -757,7 +784,7 @@
             }, 2000);
         }
 
-        // Función para generar y guardar clasificación
+        // Función para generar y guardar clasificación (Por Parejas)
         function generarClasificacion(ligaId) {
             const ligaElemento = document.getElementById(ligaId);
             if (!ligaElemento) return;
@@ -807,15 +834,8 @@
                 nombre, 
                 ...estadisticas[nombre] 
             })).sort((a, b) => {
-                // Primero ordenar por puntos
-                if (b.puntos !== a.puntos) {
-                    return b.puntos - a.puntos;
-                }
-                // Si hay empate en puntos, ordenar por partidos ganados
-                if (b.pg !== a.pg) {
-                    return b.pg - a.pg;
-                }
-                // Si aún hay empate, ordenar por diferencia de partidos (PG - PP)
+                if (b.puntos !== a.puntos) return b.puntos - a.puntos;
+                if (b.pg !== a.pg) return b.pg - a.pg;
                 const diffA = a.pg - a.pp;
                 const diffB = b.pg - b.pp;
                 return diffB - diffA;
@@ -831,12 +851,8 @@
             });
 
             database.ref('clasificacion/' + ligaId).set(clasificacionData)
-                .then(() => {
-                    console.log('Clasificación guardada en Firebase');
-                })
-                .catch((error) => {
-                    console.error('Error al guardar clasificación:', error);
-                });
+                .then(() => { console.log('Clasificación guardada en Firebase'); })
+                .catch((error) => { console.error('Error al guardar clasificación:', error); });
 
             // Actualizar tabla
             const tbody = document.getElementById(`cuerpo-tabla-${ligaId}`);
@@ -877,7 +893,6 @@
                         if (tbody) {
                             tbody.innerHTML = '';
                             
-                            // Convertir a array y ordenar
                             const ranking = Object.keys(data).map(nombre => ({
                                 nombre,
                                 ...data[nombre]
@@ -914,9 +929,88 @@
                         }
                     }
                 })
-                .catch((error) => {
-                    console.error('Error al cargar clasificación:', error);
+                .catch((error) => { console.error('Error al cargar clasificación:', error); });
+        }
+
+        // NUEVA FUNCIÓN: Generar Ranking Global Individual
+        function generarRankingIndividual() {
+            // Seleccionamos TODOS los partidos de TODAS las ligas en el DOM
+            const partidos = document.querySelectorAll('.partido');
+            const puntosJugadores = {};
+
+            partidos.forEach(partido => {
+                const nombre1El = partido.querySelector('.nombre1');
+                const nombre2El = partido.querySelector('.nombre2');
+                if (!nombre1El || !nombre2El) return;
+
+                // Calcular puntos del partido
+                let setsP1 = 0, setsP2 = 0, setsCompletados = 0;
+                for (let i = 1; i <= 3; i++) {
+                    const el1 = partido.querySelector(`.p1-s${i}`);
+                    const el2 = partido.querySelector(`.p2-s${i}`);
+                    const v1 = el1 ? parseInt(el1.value, 10) : NaN;
+                    const v2 = el2 ? parseInt(el2.value, 10) : NaN;
+                    if (!isNaN(v1) && !isNaN(v2)) {
+                        setsCompletados++;
+                        if (v1 > v2) setsP1++;
+                        else if (v2 > v1) setsP2++;
+                    }
+                }
+
+                let puntosP1 = 0;
+                let puntosP2 = 0;
+
+                if (setsCompletados > 0) {
+                    if (setsP1 > setsP2) puntosP1 = 1;
+                    else if (setsP2 > setsP1) puntosP2 = 1;
+                    else { puntosP1 = 0.5; puntosP2 = 0.5; }
+                }
+
+                // Separar nombres " y "
+                const nombres1 = nombre1El.innerText.trim().split(' y ');
+                const nombres2 = nombre2El.innerText.trim().split(' y ');
+
+                // Asignar puntos a cada jugador individualmente
+                nombres1.forEach(nombre => {
+                    nombre = nombre.trim();
+                    if (!puntosJugadores[nombre]) puntosJugadores[nombre] = 0;
+                    puntosJugadores[nombre] += puntosP1;
                 });
+
+                nombres2.forEach(nombre => {
+                    nombre = nombre.trim();
+                    if (!puntosJugadores[nombre]) puntosJugadores[nombre] = 0;
+                    puntosJugadores[nombre] += puntosP2;
+                });
+            });
+
+            // Convertir a array y ordenar
+            const ranking = Object.keys(puntosJugadores).map(nombre => ({
+                nombre,
+                puntos: puntosJugadores[nombre]
+            })).sort((a, b) => b.puntos - a.puntos);
+
+            // Renderizar tabla
+            const tbody = document.getElementById('cuerpo-tabla-global');
+            if (tbody) {
+                tbody.innerHTML = '';
+                ranking.forEach((jugador, index) => {
+                    const fila = tbody.insertRow();
+                    
+                    // Estilos para el podio
+                    let estiloFila = '';
+                    if (index === 0) estiloFila = 'background: linear-gradient(90deg, #f1c40f, #f39c12); color: white; font-weight: bold;';
+                    else if (index === 1) estiloFila = 'background: linear-gradient(90deg, #95a5a6, #7f8c8d); color: white; font-weight: bold;';
+                    else if (index === 2) estiloFila = 'background: linear-gradient(90deg, #cd7f32, #b8860b); color: white; font-weight: bold;';
+
+                    fila.style.cssText = estiloFila;
+                    fila.innerHTML = `
+                        <td class="posicion">${index + 1} ${index === 0 ? '🥇' : index === 1 ? '🥈' : index === 2 ? '🥉' : ''}</td>
+                        <td style="padding: 10px; font-weight: bold;">${jugador.nombre}</td>
+                        <td style="font-weight: bold; font-size: 1.1em;">${jugador.puntos}</td>
+                    `;
+                });
+            }
         }
 
         // Leer datos en tiempo real de Firebase
@@ -961,21 +1055,25 @@
             if (ligaEl) ligaEl.classList.add('active');
             if (btn) btn.classList.add('active');
             
-            // Cargar clasificación de la liga seleccionada
-            cargarClasificacion(idLiga);
+            // Lógica específica según la pestaña
+            if (idLiga === 'ranking-global') {
+                generarRankingIndividual();
+            } else {
+                cargarClasificacion(idLiga);
+            }
         }
         
         document.addEventListener('DOMContentLoaded', (event) => {
             const ligaActiva = document.querySelector('.liga-section.active');
             if (ligaActiva) {
-                // ensure the matching nav button is active too
                 const id = ligaActiva.id;
                 document.querySelectorAll('.btn-liga').forEach(b => {
                     if (b.getAttribute('onclick') && b.getAttribute('onclick').includes(id)) b.classList.add('active');
                 });
                 
-                // Cargar clasificación inicial
-                cargarClasificacion(ligaActiva.id);
+                if (id !== 'ranking-global') {
+                    cargarClasificacion(ligaActiva.id);
+                }
             }
         });
     </script>
