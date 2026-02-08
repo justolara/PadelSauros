@@ -75,7 +75,7 @@
             font-size: 0.9em;
         }
 
-        /* Estilo para el botón de togglear partidos en L02 */
+        /* Estilo para el botón de togglear partidos en L02 (ya no se usa, pero se deja el estilo por consistencia) */
         .toggle-partidos-btn {
             display: block;
             margin: 0 auto 20px auto;
@@ -143,14 +143,13 @@
         </div>
     </div>
 
-    <!-- SECCIÓN LIGA 02 (Histórica) -->
-    <div id="liga01" class="liga-section">
-        <h2 style="text-align: center; color: #2c3e50;">LIGA 01</h2>
-        
-        <!-- Inputs ocultos pero presentes para que el ranking global pueda leerlos si se llenaran, 
-             aunque usaremos datos estáticos para la tabla visual -->
-        <div id="contenedor-partidos-l01" style="display: none;">
-             <!-- Se dejan los inputs aquí ocultos por si en el futuro quieres rellenarlos y afectar al ranking global automáticamente -->
+    <!-- SECCIÓN LIGA 02 (Histórica - Solo Clasificación Fija, igual que LIGA 01) -->
+    <div id="liga02" class="liga-section">
+        <h2 style="text-align: center; color: #2c3e50;">LIGA 02</h2>
+
+        <!-- Contenedor de partidos (oculto) para futuro; igual que LIGA 01 -->
+        <div id="contenedor-partidos-l02" style="display: none;">
+            <!-- Se deja el contenedor oculto por si en el futuro quieres rellenarlo -->
         </div>
 
         <div class="clasificacion-container">
@@ -167,7 +166,7 @@
                         <th>Puntos</th>
                     </tr>
                 </thead>
-                <tbody id="cuerpo-tabla-liga01"></tbody>
+                <tbody id="cuerpo-tabla-liga02"></tbody>
             </table>
         </div>
     </div>
@@ -826,9 +825,17 @@
         // Datos Estáticos LIGA 01 (Solicitados por el usuario)
         const liga01Data = [
             { nombre: "MIGUEL y ROMAN", pj: 6, pg: 5, pe: 0, pp: 1, pto: 5 },
-            { nombre: "IVAN y JUST", pj: 6, pg: 5, pe: 0, pp: 1, pto: 5 },
-            { nombre: "JORGE y DANI", pj: 6, pg: 1, pe: 0, pp: 5, pto: 1 },
+            { nombre: "IVAN y JUST",    pj: 6, pg: 5, pe: 0, pp: 1, pto: 5 },
+            { nombre: "JORGE y DANI",   pj: 6, pg: 1, pe: 0, pp: 5, pto: 1 },
             { nombre: "PABLO y CARLOS", pj: 6, pg: 1, pe: 0, pp: 5, pto: 1 }
+        ];
+
+        // Datos Estáticos LIGA 02 (idéntico patrón a LIGA 01)
+        const liga02Data = [
+            { nombre: "CARLOS y ROMAN", pj: 6, pg: 6, pe: 0, pp: 0, pto: 6 },
+            { nombre: "JORGE y IVAN",   pj: 6, pg: 3, pe: 0, pp: 3, pto: 3 },
+            { nombre: "PABLO y MIGUEL", pj: 6, pg: 2, pe: 0, pp: 4, pto: 2 },
+            { nombre: "JUST y DANI",    pj: 6, pg: 1, pe: 0, pp: 5, pto: 1 }
         ];
 
         // Función para guardar partido con Firebase
@@ -917,9 +924,8 @@
 
         // Función para generar y guardar clasificación
         function generarClasificacion(ligaId) {
-            // Si es LIGA 01, no hacemos nada porque es estática visualmente, 
-            // pero si quisieras forzar escritura a Firebase, iría aquí.
-            if(ligaId === 'liga01') return;
+            // Si es LIGA 01 o LIGA 02, son estáticas visualmente
+            if (ligaId === 'liga01' || ligaId === 'liga02') return;
 
             const ligaElemento = document.getElementById(ligaId);
             if (!ligaElemento) return;
@@ -1015,7 +1021,7 @@
             }
         }
 
-        // Cargar clasificación desde Firebase
+        // Cargar clasificación desde Firebase o mostrar estática para L01/L02
         function cargarClasificacion(ligaId) {
             // CASO ESPECIAL: LIGA 01 (Estático según petición del usuario)
             if (ligaId === 'liga01') {
@@ -1023,6 +1029,37 @@
                 if (tbody) {
                     tbody.innerHTML = '';
                     liga01Data.forEach((pareja, index) => {
+                        const fila = tbody.insertRow();
+                        const esPrimero = index === 0;
+                        const esSegundo = index === 1;
+                        const esTercero = index === 2;
+                        
+                        let estiloFila = '';
+                        if (esPrimero) estiloFila = 'background: linear-gradient(90deg, #f1c40f, #f39c12); color: white; font-weight: bold;';
+                        else if (esSegundo) estiloFila = 'background: linear-gradient(90deg, #95a5a6, #7f8c8d); color: white; font-weight: bold;';
+                        else if (esTercero) estiloFila = 'background: linear-gradient(90deg, #cd7f32, #b8860b); color: white; font-weight: bold;';
+                        
+                        fila.style.cssText = estiloFila;
+                        fila.innerHTML = `
+                            <td class="posicion">${index + 1} ${esPrimero ? '🥇' : esSegundo ? '🥈' : esTercero ? '🥉' : ''}</td>
+                            <td style="padding: 10px; font-weight: bold;">${pareja.nombre}</td>
+                            <td>${pareja.pj}</td>
+                            <td>${pareja.pg}</td>
+                            <td>${pareja.pe}</td>
+                            <td>${pareja.pp}</td>
+                            <td style="font-weight: bold; font-size: 1.1em;">${pareja.pto}</td>
+                        `;
+                    });
+                }
+                return;
+            }
+
+            // CASO ESPECIAL: LIGA 02 (Estático)
+            if (ligaId === 'liga02') {
+                const tbody = document.getElementById('cuerpo-tabla-liga02');
+                if (tbody) {
+                    tbody.innerHTML = '';
+                    liga02Data.forEach((pareja, index) => {
                         const fila = tbody.insertRow();
                         const esPrimero = index === 0;
                         const esSegundo = index === 1;
@@ -1096,7 +1133,7 @@
                 .catch((error) => { console.error('Error al cargar clasificación:', error); });
         }
 
-        // Toggle para ver inputs en L02
+        // Toggle para ver inputs en L02 (no se usa ahora, pero se mantiene la función)
         function toggleInputs(id) {
             const el = document.getElementById(id);
             if(el.style.display === 'none') {
@@ -1106,7 +1143,7 @@
             }
         }
 
-        // Generar Ranking Global (Recorre TODO el DOM + Añade L01 Manual)
+        // Generar Ranking Global (Recorre TODO el DOM + Añade L01 y L02 Manual)
         function generarRankingIndividual() {
             const partidos = document.querySelectorAll('.partido');
             const statsJugadores = {};
@@ -1165,9 +1202,8 @@
             // --- AGREGAR PUNTOS MANUALMENTE DE LIGA 01 PARA EL RANKING GLOBAL ---
             liga01Data.forEach(pareja => {
                 const pto = pareja.pto;
-                // Asumimos victorias totales para PJ/PG basándonos en PTO (simplificado para ranking global)
-                const pg = pareja.pg; 
-                const pj = pareja.pj;
+                const pg  = pareja.pg; 
+                const pj  = pareja.pj;
                 
                 const nombres = pareja.nombre.split(' y ');
                 nombres.forEach(nom => {
@@ -1177,6 +1213,24 @@
                     }
                     statsJugadores[nombre].pj += pj;
                     statsJugadores[nombre].pg += pg;
+                    statsJugadores[nombre].puntos += pto;
+                });
+            });
+
+            // --- AGREGAR PUNTOS MANUALMENTE DE LIGA 02 PARA EL RANKING GLOBAL ---
+            liga02Data.forEach(pareja => {
+                const pto = pareja.pto;
+                const pg  = pareja.pg;
+                const pj  = pareja.pj;
+
+                const nombres = pareja.nombre.split(' y ');
+                nombres.forEach(nom => {
+                    const nombre = nom.trim();
+                    if (!statsJugadores[nombre]) {
+                        statsJugadores[nombre] = { pj: 0, pg: 0, puntos: 0 };
+                    }
+                    statsJugadores[nombre].pj     += pj;
+                    statsJugadores[nombre].pg     += pg;
                     statsJugadores[nombre].puntos += pto;
                 });
             });
