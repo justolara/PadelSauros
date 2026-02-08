@@ -75,7 +75,7 @@
             font-size: 0.9em;
         }
 
-        /* Estilo para el botón de togglear partidos en L01/L02 */
+        /* Estilo para el botón de togglear partidos en L02 */
         .toggle-partidos-btn {
             display: block;
             margin: 0 auto 20px auto;
@@ -114,41 +114,16 @@
         <button class="btn-liga" onclick="cambiarLiga('ranking-global', this)">RANKING GLOBAL</button>
     </div>
 
-    <!-- SECCIÓN LIGA 01 (Histórica) -->
+    <!-- SECCIÓN LIGA 01 (Histórica - Solo Clasificación Fija) -->
     <div id="liga01" class="liga-section">
         <h2 style="text-align: center; color: #2c3e50;">LIGA 01</h2>
         
-        <button class="toggle-partidos-btn" onclick="toggleInputs('contenedor-partidos-l01')">Cargar / Ver Partidos</button>
-
-        <!-- Contenedor de inputs (oculto por defecto) -->
+        <!-- Inputs ocultos pero presentes para que el ranking global pueda leerlos si se llenaran, 
+             aunque usaremos datos estáticos para la tabla visual -->
         <div id="contenedor-partidos-l01" style="display: none;">
-            <div class="jornada">
-                <div class="fecha-header" onclick="toggleJornada('L1-J1')">17 SEPTIEMBRE 2025</div>
-                <div class="partidos-container" id="L1-J1">
-                    <div class="partido" id="L1-P1">
-                        <div class="marcador"><div class="set"><label>S1</label><input type="number" class="p1-s1" min="0" step="1"><input type="number" class="p2-s1" min="0" step="1"></div><div class="set"><label>S2</label><input type="number" class="p1-s2" min="0" step="1"><input type="number" class="p2-s2" min="0" step="1"></div><div class="set"><label>S3</label><input type="number" class="p1-s3" min="0" step="1"><input type="number" class="p2-s3" min="0" step="1"></div></div>
-                        <div class="nombres"><span class="nombre1">MIGUEL y ROMAN</span><span class="vs">vs</span><span class="nombre2">IVAN y JUST</span></div>
-                        <button class="btn-guardar" onclick="guardarPartido('L1-P1')">Guardar</button>
-                    </div>
-                    <div class="partido" id="L1-P2">
-                        <div class="marcador"><div class="set"><label>S1</label><input type="number" class="p1-s1" min="0" step="1"><input type="number" class="p2-s1" min="0" step="1"></div><div class="set"><label>S2</label><input type="number" class="p1-s2" min="0" step="1"><input type="number" class="p2-s2" min="0" step="1"></div><div class="set"><label>S3</label><input type="number" class="p1-s3" min="0" step="1"><input type="number" class="p2-s3" min="0" step="1"></div></div>
-                        <div class="nombres"><span class="nombre1">CARLOS y PABLO</span><span class="vs">vs</span><span class="nombre2">MIGUEL y ROMAN</span></div>
-                        <button class="btn-guardar" onclick="guardarPartido('L1-P2')">Guardar</button>
-                    </div>
-                </div>
-            </div>
-            <div class="jornada">
-                <div class="fecha-header" onclick="toggleJornada('L1-J2')">24 SEPTIEMBRE 2025</div>
-                <div class="partidos-container" id="L1-J2" style="display:none;">
-                    <div class="partido" id="L1-P3">
-                        <div class="marcador"><div class="set"><label>S1</label><input type="number" class="p1-s1" min="0" step="1"><input type="number" class="p2-s1" min="0" step="1"></div><div class="set"><label>S2</label><input type="number" class="p1-s2" min="0" step="1"><input type="number" class="p2-s2" min="0" step="1"></div><div class="set"><label>S3</label><input type="number" class="p1-s3" min="0" step="1"><input type="number" class="p2-s3" min="0" step="1"></div></div>
-                        <div class="nombres"><span class="nombre1">IVAN y JUST</span><span class="vs">vs</span><span class="nombre2">CARLOS y PABLO</span></div>
-                        <button class="btn-guardar" onclick="guardarPartido('L1-P3')">Guardar</button>
-                    </div>
-                </div>
-            </div>
+             <!-- Se dejan los inputs aquí ocultos por si en el futuro quieres rellenarlos y afectar al ranking global automáticamente -->
         </div>
-        
+
         <div class="clasificacion-container">
             <h3 style="text-align: center; color: #2c3e50; margin-bottom: 15px;">Tabla de Clasificación</h3>
             <table class="tabla-clasificacion">
@@ -165,9 +140,6 @@
                 </thead>
                 <tbody id="cuerpo-tabla-liga01"></tbody>
             </table>
-            <p style="text-align: center; margin-top: 15px;">
-                <button onclick="generarClasificacion('liga01')" style="background: #3498db; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer;">Recalcular Clasificación</button>
-            </p>
         </div>
     </div>
 
@@ -209,7 +181,6 @@
                     </div>
                 </div>
             </div>
-            <!-- Añadir más jornadas según sea necesario... -->
         </div>
 
         <div class="clasificacion-container">
@@ -885,6 +856,14 @@
         firebase.initializeApp(firebaseConfig);
         const database = firebase.database();
 
+        // Datos Estáticos LIGA 01 (Solicitados por el usuario)
+        const liga01Data = [
+            { nombre: "MIGUEL y ROMAN", pj: 6, pg: 5, pe: 0, pp: 1, pto: 5 },
+            { nombre: "IVAN y JUST", pj: 6, pg: 5, pe: 0, pp: 1, pto: 5 },
+            { nombre: "JORGE y DANI", pj: 6, pg: 1, pe: 0, pp: 5, pto: 1 },
+            { nombre: "PABLO y CARLOS", pj: 6, pg: 1, pe: 0, pp: 5, pto: 1 }
+        ];
+
         // Función para guardar partido con Firebase
         function guardarPartido(id) {
             const cont = document.getElementById(id);
@@ -971,6 +950,10 @@
 
         // Función para generar y guardar clasificación
         function generarClasificacion(ligaId) {
+            // Si es LIGA 01, no hacemos nada porque es estática visualmente, 
+            // pero si quisieras forzar escritura a Firebase, iría aquí.
+            if(ligaId === 'liga01') return;
+
             const ligaElemento = document.getElementById(ligaId);
             if (!ligaElemento) return;
             
@@ -1067,6 +1050,38 @@
 
         // Cargar clasificación desde Firebase
         function cargarClasificacion(ligaId) {
+            // CASO ESPECIAL: LIGA 01 (Estático según petición del usuario)
+            if (ligaId === 'liga01') {
+                const tbody = document.getElementById('cuerpo-tabla-liga01');
+                if (tbody) {
+                    tbody.innerHTML = '';
+                    liga01Data.forEach((pareja, index) => {
+                        const fila = tbody.insertRow();
+                        const esPrimero = index === 0;
+                        const esSegundo = index === 1;
+                        const esTercero = index === 2;
+                        
+                        let estiloFila = '';
+                        if (esPrimero) estiloFila = 'background: linear-gradient(90deg, #f1c40f, #f39c12); color: white; font-weight: bold;';
+                        else if (esSegundo) estiloFila = 'background: linear-gradient(90deg, #95a5a6, #7f8c8d); color: white; font-weight: bold;';
+                        else if (esTercero) estiloFila = 'background: linear-gradient(90deg, #cd7f32, #b8860b); color: white; font-weight: bold;';
+                        
+                        fila.style.cssText = estiloFila;
+                        fila.innerHTML = `
+                            <td class="posicion">${index + 1} ${esPrimero ? '🥇' : esSegundo ? '🥈' : esTercero ? '🥉' : ''}</td>
+                            <td style="padding: 10px; font-weight: bold;">${pareja.nombre}</td>
+                            <td>${pareja.pj}</td>
+                            <td>${pareja.pg}</td>
+                            <td>${pareja.pe}</td>
+                            <td>${pareja.pp}</td>
+                            <td style="font-weight: bold; font-size: 1.1em;">${pareja.pto}</td>
+                        `;
+                    });
+                }
+                return;
+            }
+
+            // RESTO DE LIGAS: Cargar desde Firebase
             database.ref('clasificacion/' + ligaId).once('value')
                 .then((snapshot) => {
                     const data = snapshot.val();
@@ -1114,7 +1129,7 @@
                 .catch((error) => { console.error('Error al cargar clasificación:', error); });
         }
 
-        // Toggle para ver inputs en L01 y L02
+        // Toggle para ver inputs en L02
         function toggleInputs(id) {
             const el = document.getElementById(id);
             if(el.style.display === 'none') {
@@ -1124,7 +1139,7 @@
             }
         }
 
-        // Generar Ranking Global (Recorre TODO el DOM, así que incluye L01 y L02 automáticamente)
+        // Generar Ranking Global (Recorre TODO el DOM + Añade L01 Manual)
         function generarRankingIndividual() {
             const partidos = document.querySelectorAll('.partido');
             const statsJugadores = {};
@@ -1178,6 +1193,25 @@
 
                 agregarStats(nombre1El.innerText, puntosP1, victoriaP1);
                 agregarStats(nombre2El.innerText, puntosP2, victoriaP2);
+            });
+
+            // --- AGREGAR PUNTOS MANUALMENTE DE LIGA 01 PARA EL RANKING GLOBAL ---
+            liga01Data.forEach(pareja => {
+                const pto = pareja.pto;
+                // Asumimos victorias totales para PJ/PG basándonos en PTO (simplificado para ranking global)
+                const pg = pareja.pg; 
+                const pj = pareja.pj;
+                
+                const nombres = pareja.nombre.split(' y ');
+                nombres.forEach(nom => {
+                    const nombre = nom.trim();
+                    if (!statsJugadores[nombre]) {
+                        statsJugadores[nombre] = { pj: 0, pg: 0, puntos: 0 };
+                    }
+                    statsJugadores[nombre].pj += pj;
+                    statsJugadores[nombre].pg += pg;
+                    statsJugadores[nombre].puntos += pto;
+                });
             });
 
             const ranking = Object.keys(statsJugadores).map(nombre => {
