@@ -29,14 +29,14 @@
         .partido:last-child { border-bottom: none; padding-bottom: 0; margin-bottom: 0; }
         
         /* Ajustes para ganar espacio horizontal */
-        .marcador { display: flex; gap: 5px; /* Reducido de 10px a 5px */ }
-        .set { display: flex; flex-direction: column; gap: 2px; align-items: center; /* Reducido de 5px a 2px */ }
+        .marcador { display: flex; gap: 5px; }
+        .set { display: flex; flex-direction: column; gap: 2px; align-items: center; }
         .set label { font-size: 0.6em; color: #666; }
         
         /* Inputs más estrechos */
         input[type="number"] { 
-            width: 36px; /* Reducido de 45px a 36px */
-            height: 28px; /* Reducido ligeramente de 30px */
+            width: 36px; 
+            height: 28px; 
             text-align: center; 
             border: 1px solid #ccc; 
             border-radius: 4px; 
@@ -47,7 +47,7 @@
             display: flex; 
             flex-direction: column; 
             justify-content: space-between; 
-            height: 60px; /* Ajustado ligeramente a 60px para coincidir con inputs más pequeños */
+            height: 60px; 
             flex-grow: 1; 
             margin-top: 0; 
             text-align: center; 
@@ -56,8 +56,8 @@
         /* Texto más compacto */
         .nombres span { 
             font-weight: bold; 
-            line-height: 26px; /* Reducido de 30px */
-            font-size: 0.85em; /* Reducido ligeramente */
+            line-height: 26px; 
+            font-size: 0.85em; 
         }
         .vs { font-size: 0.5em !important; color: #aaa !important; line-height: 4px !important; font-weight: normal !important; }
         
@@ -75,6 +75,20 @@
             font-size: 0.9em;
         }
 
+        /* Estilo para el botón de togglear partidos en L01/L02 */
+        .toggle-partidos-btn {
+            display: block;
+            margin: 0 auto 20px auto;
+            background: #95a5a6;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.9em;
+        }
+        .toggle-partidos-btn:hover { background: #7f8c8d; }
+
         .ganador { color: #27ae60 !important; }
         .clasificacion-container { margin-top: 30px; }
         .tabla-clasificacion { width: 100%; border-collapse: collapse; }
@@ -91,11 +105,133 @@
 
     <!-- Navegación -->
     <div class="selector-ligas">
+        <button class="btn-liga" onclick="cambiarLiga('liga01', this)">LIGA 01</button>
+        <button class="btn-liga" onclick="cambiarLiga('liga02', this)">LIGA 02</button>
         <button class="btn-liga active" onclick="cambiarLiga('liga03', this)">LIGA 03</button>
         <button class="btn-liga" onclick="cambiarLiga('liga04', this)">LIGA 04</button>
         <button class="btn-liga" onclick="cambiarLiga('liga05', this)">LIGA 05</button>
         <button class="btn-liga" onclick="cambiarLiga('liga06', this)">LIGA 06</button>
         <button class="btn-liga" onclick="cambiarLiga('ranking-global', this)">RANKING GLOBAL</button>
+    </div>
+
+    <!-- SECCIÓN LIGA 01 (Histórica) -->
+    <div id="liga01" class="liga-section">
+        <h2 style="text-align: center; color: #2c3e50;">LIGA 01</h2>
+        
+        <button class="toggle-partidos-btn" onclick="toggleInputs('contenedor-partidos-l01')">Cargar / Ver Partidos</button>
+
+        <!-- Contenedor de inputs (oculto por defecto) -->
+        <div id="contenedor-partidos-l01" style="display: none;">
+            <div class="jornada">
+                <div class="fecha-header" onclick="toggleJornada('L1-J1')">17 SEPTIEMBRE 2025</div>
+                <div class="partidos-container" id="L1-J1">
+                    <div class="partido" id="L1-P1">
+                        <div class="marcador"><div class="set"><label>S1</label><input type="number" class="p1-s1" min="0" step="1"><input type="number" class="p2-s1" min="0" step="1"></div><div class="set"><label>S2</label><input type="number" class="p1-s2" min="0" step="1"><input type="number" class="p2-s2" min="0" step="1"></div><div class="set"><label>S3</label><input type="number" class="p1-s3" min="0" step="1"><input type="number" class="p2-s3" min="0" step="1"></div></div>
+                        <div class="nombres"><span class="nombre1">MIGUEL y ROMAN</span><span class="vs">vs</span><span class="nombre2">IVAN y JUST</span></div>
+                        <button class="btn-guardar" onclick="guardarPartido('L1-P1')">Guardar</button>
+                    </div>
+                    <div class="partido" id="L1-P2">
+                        <div class="marcador"><div class="set"><label>S1</label><input type="number" class="p1-s1" min="0" step="1"><input type="number" class="p2-s1" min="0" step="1"></div><div class="set"><label>S2</label><input type="number" class="p1-s2" min="0" step="1"><input type="number" class="p2-s2" min="0" step="1"></div><div class="set"><label>S3</label><input type="number" class="p1-s3" min="0" step="1"><input type="number" class="p2-s3" min="0" step="1"></div></div>
+                        <div class="nombres"><span class="nombre1">CARLOS y PABLO</span><span class="vs">vs</span><span class="nombre2">MIGUEL y ROMAN</span></div>
+                        <button class="btn-guardar" onclick="guardarPartido('L1-P2')">Guardar</button>
+                    </div>
+                </div>
+            </div>
+            <div class="jornada">
+                <div class="fecha-header" onclick="toggleJornada('L1-J2')">24 SEPTIEMBRE 2025</div>
+                <div class="partidos-container" id="L1-J2" style="display:none;">
+                    <div class="partido" id="L1-P3">
+                        <div class="marcador"><div class="set"><label>S1</label><input type="number" class="p1-s1" min="0" step="1"><input type="number" class="p2-s1" min="0" step="1"></div><div class="set"><label>S2</label><input type="number" class="p1-s2" min="0" step="1"><input type="number" class="p2-s2" min="0" step="1"></div><div class="set"><label>S3</label><input type="number" class="p1-s3" min="0" step="1"><input type="number" class="p2-s3" min="0" step="1"></div></div>
+                        <div class="nombres"><span class="nombre1">IVAN y JUST</span><span class="vs">vs</span><span class="nombre2">CARLOS y PABLO</span></div>
+                        <button class="btn-guardar" onclick="guardarPartido('L1-P3')">Guardar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="clasificacion-container">
+            <h3 style="text-align: center; color: #2c3e50; margin-bottom: 15px;">Tabla de Clasificación</h3>
+            <table class="tabla-clasificacion">
+                <thead>
+                    <tr style="background: #e67e22; color: black;">
+                        <th>Pos</th>
+                        <th>Pareja</th>
+                        <th>PJ</th>
+                        <th>PG</th>
+                        <th>PE</th>
+                        <th>PP</th>
+                        <th>Puntos</th>
+                    </tr>
+                </thead>
+                <tbody id="cuerpo-tabla-liga01"></tbody>
+            </table>
+            <p style="text-align: center; margin-top: 15px;">
+                <button onclick="generarClasificacion('liga01')" style="background: #3498db; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer;">Recalcular Clasificación</button>
+            </p>
+        </div>
+    </div>
+
+    <!-- SECCIÓN LIGA 02 (Histórica) -->
+    <div id="liga02" class="liga-section">
+        <h2 style="text-align: center; color: #2c3e50;">LIGA 02</h2>
+        
+        <button class="toggle-partidos-btn" onclick="toggleInputs('contenedor-partidos-l02')">Cargar / Ver Partidos</button>
+
+        <!-- Contenedor de inputs (oculto por defecto) -->
+        <div id="contenedor-partidos-l02" style="display: none;">
+            <div class="jornada">
+                <div class="fecha-header" onclick="toggleJornada('L2-J1')">08 OCTUBRE 2025</div>
+                <div class="partidos-container" id="L2-J1">
+                    <div class="partido" id="L2-P1">
+                        <div class="marcador"><div class="set"><label>S1</label><input type="number" class="p1-s1" min="0" step="1"><input type="number" class="p2-s1" min="0" step="1"></div><div class="set"><label>S2</label><input type="number" class="p1-s2" min="0" step="1"><input type="number" class="p2-s2" min="0" step="1"></div><div class="set"><label>S3</label><input type="number" class="p1-s3" min="0" step="1"><input type="number" class="p2-s3" min="0" step="1"></div></div>
+                        <div class="nombres"><span class="nombre1">MIGUEL y ROMAN</span><span class="vs">vs</span><span class="nombre2">IVAN y JUST</span></div>
+                        <button class="btn-guardar" onclick="guardarPartido('L2-P1')">Guardar</button>
+                    </div>
+                    <div class="partido" id="L2-P2">
+                        <div class="marcador"><div class="set"><label>S1</label><input type="number" class="p1-s1" min="0" step="1"><input type="number" class="p2-s1" min="0" step="1"></div><div class="set"><label>S2</label><input type="number" class="p1-s2" min="0" step="1"><input type="number" class="p2-s2" min="0" step="1"></div><div class="set"><label>S3</label><input type="number" class="p1-s3" min="0" step="1"><input type="number" class="p2-s3" min="0" step="1"></div></div>
+                        <div class="nombres"><span class="nombre1">CARLOS y PABLO</span><span class="vs">vs</span><span class="nombre2">DANIEL y PEDRO</span></div>
+                        <button class="btn-guardar" onclick="guardarPartido('L2-P2')">Guardar</button>
+                    </div>
+                </div>
+            </div>
+            <div class="jornada">
+                <div class="fecha-header" onclick="toggleJornada('L2-J2')">15 OCTUBRE 2025</div>
+                <div class="partidos-container" id="L2-J2" style="display:none;">
+                    <div class="partido" id="L2-P3">
+                        <div class="marcador"><div class="set"><label>S1</label><input type="number" class="p1-s1" min="0" step="1"><input type="number" class="p2-s1" min="0" step="1"></div><div class="set"><label>S2</label><input type="number" class="p1-s2" min="0" step="1"><input type="number" class="p2-s2" min="0" step="1"></div><div class="set"><label>S3</label><input type="number" class="p1-s3" min="0" step="1"><input type="number" class="p2-s3" min="0" step="1"></div></div>
+                        <div class="nombres"><span class="nombre1">MIGUEL y ROMAN</span><span class="vs">vs</span><span class="nombre2">CARLOS y PABLO</span></div>
+                        <button class="btn-guardar" onclick="guardarPartido('L2-P3')">Guardar</button>
+                    </div>
+                    <div class="partido" id="L2-P4">
+                        <div class="marcador"><div class="set"><label>S1</label><input type="number" class="p1-s1" min="0" step="1"><input type="number" class="p2-s1" min="0" step="1"></div><div class="set"><label>S2</label><input type="number" class="p1-s2" min="0" step="1"><input type="number" class="p2-s2" min="0" step="1"></div><div class="set"><label>S3</label><input type="number" class="p1-s3" min="0" step="1"><input type="number" class="p2-s3" min="0" step="1"></div></div>
+                        <div class="nombres"><span class="nombre1">IVAN y JUST</span><span class="vs">vs</span><span class="nombre2">DANIEL y PEDRO</span></div>
+                        <button class="btn-guardar" onclick="guardarPartido('L2-P4')">Guardar</button>
+                    </div>
+                </div>
+            </div>
+            <!-- Añadir más jornadas según sea necesario... -->
+        </div>
+
+        <div class="clasificacion-container">
+            <h3 style="text-align: center; color: #2c3e50; margin-bottom: 15px;">Tabla de Clasificación</h3>
+            <table class="tabla-clasificacion">
+                <thead>
+                    <tr style="background: #e67e22; color: black;">
+                        <th>Pos</th>
+                        <th>Pareja</th>
+                        <th>PJ</th>
+                        <th>PG</th>
+                        <th>PE</th>
+                        <th>PP</th>
+                        <th>Puntos</th>
+                    </tr>
+                </thead>
+                <tbody id="cuerpo-tabla-liga02"></tbody>
+            </table>
+            <p style="text-align: center; margin-top: 15px;">
+                <button onclick="generarClasificacion('liga02')" style="background: #3498db; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer;">Recalcular Clasificación</button>
+            </p>
+        </div>
     </div>
 
     <!-- SECCIÓN LIGA 03 -->
@@ -709,7 +845,7 @@
         <h2 style="text-align: center; color: #8e44ad;">RANKING GLOBAL INDIVIDUAL</h2>
         <div class="clasificacion-container">
             <p style="text-align: center; color: #666; margin-bottom: 20px;">
-                Suma de puntos obtenidos en todas las ligas (L03, L04, L05, L06).
+                Suma de puntos obtenidos en todas las ligas (L01, L02, L03, L04, L05, L06).
             </p>
             <table class="tabla-clasificacion">
                 <thead>
@@ -787,10 +923,7 @@
             // Guardar en Firebase
             database.ref('resultados/' + id).set(datos)
                 .then(() => {
-                    // Mostrar notificación más sutil
                     mostrarNotificacion("✅ ¡Resultado guardado!");
-                    
-                    // Recalcular clasificación automáticamente
                     const ligaSection = cont.closest('.liga-section');
                     if (ligaSection && ligaSection.id !== 'ranking-global') {
                         setTimeout(() => {
@@ -836,7 +969,7 @@
             }, 2000);
         }
 
-        // Función para generar y guardar clasificación (Por Parejas)
+        // Función para generar y guardar clasificación
         function generarClasificacion(ligaId) {
             const ligaElemento = document.getElementById(ligaId);
             if (!ligaElemento) return;
@@ -881,7 +1014,6 @@
                 }
             });
 
-            // Ordenar por puntos (descendente), luego por partidos ganados (descendente)
             const ranking = Object.keys(estadisticas).map(nombre => ({ 
                 nombre, 
                 ...estadisticas[nombre] 
@@ -893,7 +1025,6 @@
                 return diffB - diffA;
             });
 
-            // Guardar clasificación en Firebase
             const clasificacionData = {};
             ranking.forEach((pareja, index) => {
                 clasificacionData[pareja.nombre] = {
@@ -906,7 +1037,6 @@
                 .then(() => { console.log('Clasificación guardada en Firebase'); })
                 .catch((error) => { console.error('Error al guardar clasificación:', error); });
 
-            // Actualizar tabla
             const tbody = document.getElementById(`cuerpo-tabla-${ligaId}`);
             if (tbody) {
                 tbody.innerHTML = '';
@@ -935,7 +1065,7 @@
             }
         }
 
-        // Cargar clasificación desde Firebase al iniciar
+        // Cargar clasificación desde Firebase
         function cargarClasificacion(ligaId) {
             database.ref('clasificacion/' + ligaId).once('value')
                 .then((snapshot) => {
@@ -984,11 +1114,19 @@
                 .catch((error) => { console.error('Error al cargar clasificación:', error); });
         }
 
-        // NUEVA FUNCIÓN: Generar Ranking Global Individual
+        // Toggle para ver inputs en L01 y L02
+        function toggleInputs(id) {
+            const el = document.getElementById(id);
+            if(el.style.display === 'none') {
+                el.style.display = 'block';
+            } else {
+                el.style.display = 'none';
+            }
+        }
+
+        // Generar Ranking Global (Recorre TODO el DOM, así que incluye L01 y L02 automáticamente)
         function generarRankingIndividual() {
-            // Seleccionamos TODOS los partidos de TODAS las ligas en el DOM
             const partidos = document.querySelectorAll('.partido');
-            // Objeto para almacenar estadísticas individuales
             const statsJugadores = {};
 
             partidos.forEach(partido => {
@@ -996,7 +1134,6 @@
                 const nombre2El = partido.querySelector('.nombre2');
                 if (!nombre1El || !nombre2El) return;
 
-                // Calcular resultado del partido
                 let setsP1 = 0, setsP2 = 0, setsCompletados = 0;
                 for (let i = 1; i <= 3; i++) {
                     const el1 = partido.querySelector(`.p1-s${i}`);
@@ -1012,7 +1149,6 @@
 
                 if (setsCompletados === 0) return;
 
-                // Determinar ganador y puntos
                 let puntosP1 = 0, puntosP2 = 0;
                 let victoriaP1 = false, victoriaP2 = false;
 
@@ -1027,7 +1163,6 @@
                     puntosP2 = 0.5;
                 }
 
-                // Función auxiliar para sumar stats a jugadores
                 const agregarStats = (textoPareja, ptos, gano) => {
                     const nombres = textoPareja.trim().split(' y ');
                     nombres.forEach(nom => {
@@ -1041,17 +1176,13 @@
                     });
                 };
 
-                // Aplicar a ambos equipos
                 agregarStats(nombre1El.innerText, puntosP1, victoriaP1);
                 agregarStats(nombre2El.innerText, puntosP2, victoriaP2);
             });
 
-            // Convertir a array y ordenar
             const ranking = Object.keys(statsJugadores).map(nombre => {
                 const stats = statsJugadores[nombre];
-                // Calcular % de victorias
                 const porcentaje = stats.pj > 0 ? ((stats.pg / stats.pj) * 100).toFixed(1) : "0.0";
-                
                 return {
                     nombre,
                     puntos: stats.puntos,
@@ -1061,14 +1192,11 @@
                 };
             }).sort((a, b) => b.puntos - a.puntos);
 
-            // Renderizar tabla
             const tbody = document.getElementById('cuerpo-tabla-global');
             if (tbody) {
                 tbody.innerHTML = '';
                 ranking.forEach((jugador, index) => {
                     const fila = tbody.insertRow();
-                    
-                    // Estilos para el podio
                     let estiloFila = '';
                     if (index === 0) estiloFila = 'background: linear-gradient(90deg, #f1c40f, #f39c12); color: white; font-weight: bold;';
                     else if (index === 1) estiloFila = 'background: linear-gradient(90deg, #95a5a6, #7f8c8d); color: white; font-weight: bold;';
@@ -1086,7 +1214,7 @@
             }
         }
 
-        // Leer datos en tiempo real de Firebase
+        // Leer datos en tiempo real
         database.ref('resultados/').on('value', (snapshot) => {
             const data = snapshot.val();
             if (data) {
@@ -1095,7 +1223,6 @@
                     if (partidoDiv && data[id]) {
                         const p1 = data[id].p1 || {};
                         const p2 = data[id].p2 || {};
-                        
                         const p1s1 = partidoDiv.querySelector('.p1-s1');
                         const p1s2 = partidoDiv.querySelector('.p1-s2');
                         const p1s3 = partidoDiv.querySelector('.p1-s3');
@@ -1128,7 +1255,6 @@
             if (ligaEl) ligaEl.classList.add('active');
             if (btn) btn.classList.add('active');
             
-            // Lógica específica según la pestaña
             if (idLiga === 'ranking-global') {
                 generarRankingIndividual();
             } else {
