@@ -75,7 +75,7 @@
             font-size: 0.9em;
         }
 
-        /* Estilo para el botón de togglear partidos (si se usara en el futuro) */
+        /* Estilo para el botón de togglear partidos en L02 */
         .toggle-partidos-btn {
             display: block;
             margin: 0 auto 20px auto;
@@ -118,8 +118,11 @@
     <div id="liga01" class="liga-section">
         <h2 style="text-align: center; color: #2c3e50;">LIGA 01</h2>
         
-        <!-- Inputs ocultos -->
-        <div id="contenedor-partidos-l01" style="display: none;"></div>
+        <!-- Inputs ocultos pero presentes para que el ranking global pueda leerlos si se llenaran, 
+             aunque usaremos datos estáticos para la tabla visual -->
+        <div id="contenedor-partidos-l01" style="display: none;">
+             <!-- Se dejan los inputs aquí ocultos por si en el futuro quieres rellenarlos y afectar al ranking global automáticamente -->
+        </div>
 
         <div class="clasificacion-container">
             <h3 style="text-align: center; color: #2c3e50; margin-bottom: 15px;">Tabla de Clasificación</h3>
@@ -140,12 +143,45 @@
         </div>
     </div>
 
-    <!-- SECCIÓN LIGA 02 (Histórica - Solo Clasificación Fija) -->
+    <!-- SECCIÓN LIGA 02 (Histórica) -->
     <div id="liga02" class="liga-section">
         <h2 style="text-align: center; color: #2c3e50;">LIGA 02</h2>
         
-        <!-- Inputs ocultos -->
-        <div id="contenedor-partidos-l02" style="display: none;"></div>
+        <button class="toggle-partidos-btn" onclick="toggleInputs('contenedor-partidos-l02')">Cargar / Ver Partidos</button>
+
+        <!-- Contenedor de inputs (oculto por defecto) -->
+        <div id="contenedor-partidos-l02" style="display: none;">
+            <div class="jornada">
+                <div class="fecha-header" onclick="toggleJornada('L2-J1')">08 OCTUBRE 2025</div>
+                <div class="partidos-container" id="L2-J1">
+                    <div class="partido" id="L2-P1">
+                        <div class="marcador"><div class="set"><label>S1</label><input type="number" class="p1-s1" min="0" step="1"><input type="number" class="p2-s1" min="0" step="1"></div><div class="set"><label>S2</label><input type="number" class="p1-s2" min="0" step="1"><input type="number" class="p2-s2" min="0" step="1"></div><div class="set"><label>S3</label><input type="number" class="p1-s3" min="0" step="1"><input type="number" class="p2-s3" min="0" step="1"></div></div>
+                        <div class="nombres"><span class="nombre1">MIGUEL y ROMAN</span><span class="vs">vs</span><span class="nombre2">IVAN y JUST</span></div>
+                        <button class="btn-guardar" onclick="guardarPartido('L2-P1')">Guardar</button>
+                    </div>
+                    <div class="partido" id="L2-P2">
+                        <div class="marcador"><div class="set"><label>S1</label><input type="number" class="p1-s1" min="0" step="1"><input type="number" class="p2-s1" min="0" step="1"></div><div class="set"><label>S2</label><input type="number" class="p1-s2" min="0" step="1"><input type="number" class="p2-s2" min="0" step="1"></div><div class="set"><label>S3</label><input type="number" class="p1-s3" min="0" step="1"><input type="number" class="p2-s3" min="0" step="1"></div></div>
+                        <div class="nombres"><span class="nombre1">CARLOS y PABLO</span><span class="vs">vs</span><span class="nombre2">DANIEL y PEDRO</span></div>
+                        <button class="btn-guardar" onclick="guardarPartido('L2-P2')">Guardar</button>
+                    </div>
+                </div>
+            </div>
+            <div class="jornada">
+                <div class="fecha-header" onclick="toggleJornada('L2-J2')">15 OCTUBRE 2025</div>
+                <div class="partidos-container" id="L2-J2" style="display:none;">
+                    <div class="partido" id="L2-P3">
+                        <div class="marcador"><div class="set"><label>S1</label><input type="number" class="p1-s1" min="0" step="1"><input type="number" class="p2-s1" min="0" step="1"></div><div class="set"><label>S2</label><input type="number" class="p1-s2" min="0" step="1"><input type="number" class="p2-s2" min="0" step="1"></div><div class="set"><label>S3</label><input type="number" class="p1-s3" min="0" step="1"><input type="number" class="p2-s3" min="0" step="1"></div></div>
+                        <div class="nombres"><span class="nombre1">MIGUEL y ROMAN</span><span class="vs">vs</span><span class="nombre2">CARLOS y PABLO</span></div>
+                        <button class="btn-guardar" onclick="guardarPartido('L2-P3')">Guardar</button>
+                    </div>
+                    <div class="partido" id="L2-P4">
+                        <div class="marcador"><div class="set"><label>S1</label><input type="number" class="p1-s1" min="0" step="1"><input type="number" class="p2-s1" min="0" step="1"></div><div class="set"><label>S2</label><input type="number" class="p1-s2" min="0" step="1"><input type="number" class="p2-s2" min="0" step="1"></div><div class="set"><label>S3</label><input type="number" class="p1-s3" min="0" step="1"><input type="number" class="p2-s3" min="0" step="1"></div></div>
+                        <div class="nombres"><span class="nombre1">IVAN y JUST</span><span class="vs">vs</span><span class="nombre2">DANIEL y PEDRO</span></div>
+                        <button class="btn-guardar" onclick="guardarPartido('L2-P4')">Guardar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
 
         <div class="clasificacion-container">
             <h3 style="text-align: center; color: #2c3e50; margin-bottom: 15px;">Tabla de Clasificación</h3>
@@ -163,6 +199,9 @@
                 </thead>
                 <tbody id="cuerpo-tabla-liga02"></tbody>
             </table>
+            <p style="text-align: center; margin-top: 15px;">
+                <button onclick="generarClasificacion('liga02')" style="background: #3498db; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer;">Recalcular Clasificación</button>
+            </p>
         </div>
     </div>
 
@@ -817,20 +856,12 @@
         firebase.initializeApp(firebaseConfig);
         const database = firebase.database();
 
-        // Datos Estáticos LIGA 01
+        // Datos Estáticos LIGA 01 (Solicitados por el usuario)
         const liga01Data = [
             { nombre: "MIGUEL y ROMAN", pj: 6, pg: 5, pe: 0, pp: 1, pto: 5 },
             { nombre: "IVAN y JUST", pj: 6, pg: 5, pe: 0, pp: 1, pto: 5 },
             { nombre: "JORGE y DANI", pj: 6, pg: 1, pe: 0, pp: 5, pto: 1 },
             { nombre: "PABLO y CARLOS", pj: 6, pg: 1, pe: 0, pp: 5, pto: 1 }
-        ];
-
-        // Datos Estáticos LIGA 02 (Nuevos datos proporcionados)
-        const liga02Data = [
-            { nombre: "CARLOS y ROMAN", pj: 6, pg: 6, pe: 0, pp: 0, pto: 6 },
-            { nombre: "JORGE y IVAN", pj: 6, pg: 3, pe: 0, pp: 3, pto: 3 },
-            { nombre: "PABLO y MIGUEL", pj: 6, pg: 2, pe: 0, pp: 4, pto: 2 },
-            { nombre: "JUST y DANI", pj: 6, pg: 1, pe: 0, pp: 5, pto: 1 }
         ];
 
         // Función para guardar partido con Firebase
@@ -919,8 +950,9 @@
 
         // Función para generar y guardar clasificación
         function generarClasificacion(ligaId) {
-            // Si es LIGA 01 o 02, no hacemos nada porque son estáticas visualmente
-            if(ligaId === 'liga01' || ligaId === 'liga02') return;
+            // Si es LIGA 01, no hacemos nada porque es estática visualmente, 
+            // pero si quisieras forzar escritura a Firebase, iría aquí.
+            if(ligaId === 'liga01') return;
 
             const ligaElemento = document.getElementById(ligaId);
             if (!ligaElemento) return;
@@ -1016,45 +1048,14 @@
             }
         }
 
-        // Cargar clasificación (Maneja L01 y L02 estáticamente, el resto de Firebase)
+        // Cargar clasificación desde Firebase
         function cargarClasificacion(ligaId) {
-            // CASO ESPECIAL: LIGA 01
+            // CASO ESPECIAL: LIGA 01 (Estático según petición del usuario)
             if (ligaId === 'liga01') {
                 const tbody = document.getElementById('cuerpo-tabla-liga01');
                 if (tbody) {
                     tbody.innerHTML = '';
                     liga01Data.forEach((pareja, index) => {
-                        const fila = tbody.insertRow();
-                        const esPrimero = index === 0;
-                        const esSegundo = index === 1;
-                        const esTercero = index === 2;
-                        
-                        let estiloFila = '';
-                        if (esPrimero) estiloFila = 'background: linear-gradient(90deg, #f1c40f, #f39c12); color: white; font-weight: bold;';
-                        else if (esSegundo) estiloFila = 'background: linear-gradient(90deg, #95a5a6, #7f8c8d); color: white; font-weight: bold;';
-                        else if (esTercero) estiloFila = 'background: linear-gradient(90deg, #cd7f32, #b8860b); color: white; font-weight: bold;';
-                        
-                        fila.style.cssText = estiloFila;
-                        fila.innerHTML = `
-                            <td class="posicion">${index + 1} ${esPrimero ? '🥇' : esSegundo ? '🥈' : esTercero ? '🥉' : ''}</td>
-                            <td style="padding: 10px; font-weight: bold;">${pareja.nombre}</td>
-                            <td>${pareja.pj}</td>
-                            <td>${pareja.pg}</td>
-                            <td>${pareja.pe}</td>
-                            <td>${pareja.pp}</td>
-                            <td style="font-weight: bold; font-size: 1.1em;">${pareja.pto}</td>
-                        `;
-                    });
-                }
-                return;
-            }
-
-            // CASO ESPECIAL: LIGA 02
-            if (ligaId === 'liga02') {
-                const tbody = document.getElementById('cuerpo-tabla-liga02');
-                if (tbody) {
-                    tbody.innerHTML = '';
-                    liga02Data.forEach((pareja, index) => {
                         const fila = tbody.insertRow();
                         const esPrimero = index === 0;
                         const esSegundo = index === 1;
@@ -1113,7 +1114,7 @@
                                 
                                 fila.style.cssText = estiloFila;
                                 fila.innerHTML = `
-                                    <td class="posicion">${index + 1} ${esPrimero ? '🥇' : esSegundo ? '🥈' : esTercero ? 'ayr3' : ''}</td>
+                                    <td class="posicion">${index + 1} ${esPrimero ? '🥇' : esSegundo ? '🥈' : esTercero ? '🥉' : ''}</td>
                                     <td style="padding: 10px; font-weight: bold;">${pareja.nombre}</td>
                                     <td>${pareja.pj}</td>
                                     <td>${pareja.pg}</td>
@@ -1128,7 +1129,7 @@
                 .catch((error) => { console.error('Error al cargar clasificación:', error); });
         }
 
-        // Toggle para ver inputs en L02 (si se deseara en el futuro, actualmente no se usa)
+        // Toggle para ver inputs en L02
         function toggleInputs(id) {
             const el = document.getElementById(id);
             if(el.style.display === 'none') {
@@ -1138,14 +1139,14 @@
             }
         }
 
-        // Generar Ranking Global (Recorre DOM + Suma L01 + L02 Manual)
+        // Generar Ranking Global (Recorre TODO el DOM + Añade L01 Manual)
         function generarRankingIndividual() {
             const partidos = document.querySelectorAll('.partido');
             const statsJugadores = {};
 
             partidos.forEach(partido => {
                 const nombre1El = partido.querySelector('.nombre1');
-                const nombre2El = partido partido.querySelector('.nombre2');
+                const nombre2El = partido.querySelector('.nombre2');
                 if (!nombre1El || !nombre2El) return;
 
                 let setsP1 = 0, setsP2 = 0, setsCompletados = 0;
@@ -1194,27 +1195,10 @@
                 agregarStats(nombre2El.innerText, puntosP2, victoriaP2);
             });
 
-            // --- AGREGAR PUNTOS MANUALMENTE DE LIGA 01 ---
+            // --- AGREGAR PUNTOS MANUALMENTE DE LIGA 01 PARA EL RANKING GLOBAL ---
             liga01Data.forEach(pareja => {
                 const pto = pareja.pto;
-                const pg = pareja.pg; 
-                const pj = pareja.pj;
-                
-                const nombres = pareja.nombre.split(' y ');
-                nombres.forEach(nom => {
-                    const nombre = nom.trim();
-                    if (!statsJugadores[nombre]) {
-                        statsJugadores[nombre] = { pj: 0, pg: 0, puntos: 0 };
-                    }
-                    statsJugadores[nombre].pj += pj;
-                    statsJugadores[nombre].pg += pg;
-                    statsJugadores[nombre].puntos += pto;
-                });
-            });
-
-            // --- AGREGAR PUNTOS MANUALMENTE DE LIGA 02 ---
-            liga02Data.forEach(pareja => {
-                const pto = pareja.pto;
+                // Asumimos victorias totales para PJ/PG basándonos en PTO (simplificado para ranking global)
                 const pg = pareja.pg; 
                 const pj = pareja.pj;
                 
