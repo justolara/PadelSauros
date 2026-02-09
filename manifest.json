@@ -1,0 +1,18 @@
+{
+  "name": "Ligas PadelSauros",
+  "short_name": "PadelSauros",
+  "description": "Gestión de ligas y resultados de PadelSauros",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#f4f4f4",
+  "theme_color": "#27ae60",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "Gemini_Generated_Image_cuadrado.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
