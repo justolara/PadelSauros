@@ -1547,9 +1547,6 @@
         const add=(txt,pt,win)=>{ txt.trim().split(' y ').forEach(n=>{ const k=n.trim(); if(!stats[k]) stats[k]={pj:0,pg:0,puntos:0}; stats[k].pj++; stats[k].puntos+=pt; if(win) stats[k].pg++; }); };
         add(a.innerText,pt1,win1); add(b.innerText,pt2,win2);
       });
-      [liga01Data, liga02Data].forEach(arr=>{
-        arr.forEach(par=>{ const {nombre,pto,pg,pj}=par; nombre.split(' y ').forEach(n=>{ const k=n.trim(); if(!stats[k]) stats[k]={pj:0,pg:0,puntos:0}; stats[k].pj+=pj; stats[k].pg+=pg; stats[k].puntos+=pto; }); });
-      });
       const ranking=Object.keys(stats).map(n=>{ const s=stats[n]; const porc=s.pj>0?((s.pg/s.pj)*100).toFixed(1):'0.0'; return {nombre:n,puntos:s.puntos,pj:s.pj,pg:s.pg,porcentaje:porc}; }).sort((a,b)=>b.puntos-a.puntos);
       asignarPosicionesDensas(ranking,'puntos');
       const tb=document.getElementById('cuerpo-tabla-global'); if(tb){ tb.innerHTML=''; ranking.forEach(j=>{ const tr=tb.insertRow(); const pos=j.posicion, med=medallaPorPos(pos); tr.style.cssText=estiloFilaPorPos(pos); tr.innerHTML=`<td class="posicion">${pos} ${med}</td><td style="padding:10px;font-weight:800;">${j.nombre}</td><td style="font-weight:800">${j.puntos}</td><td>${j.pj}</td><td>${j.porcentaje}%</td>`; }); }
