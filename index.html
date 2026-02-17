@@ -307,22 +307,233 @@
   </div>
 </div>
 
-  <!-- LIGA 02 (estática) -->
-  <div id="liga02" class="liga-section">
-    <h2 class="section-title">LIGA 02</h2>
-    <div class="clasificacion-container">
-      <h3 style="text-align:center; color:#2c3e50; margin-bottom:10px">Tabla de Clasificación</h3>
-      <table class="tabla-clasificacion">
-        <thead>
-          <tr style="background:#e67e22; color:black">
-            <th>Pos</th><th>Pareja</th><th>PJ</th><th>PG</th><th>PE</th><th>PP</th><th>Puntos</th>
-          </tr>
-        </thead>
-        <tbody id="cuerpo-tabla-liga02"></tbody>
-      </table>
+ <!-- LIGA 02 (dinámica, formato LIGA 03 y cálculo por data-pairid) -->
+<div id="liga02" class="liga-section">
+  <h2 class="section-title">LIGA 02</h2>
+
+  <!-- J1 -->
+  <div class="jornada">
+    <div class="fecha-header" onclick="toggleJornada('L2-J1')">12 DE NOVIEMBRE 2025</div>
+    <div class="partidos-container" id="L2-J1">
+      <div class="partido" id="L2-P1">
+        <div class="marcador">
+          <div class="set"><label>S1</label><input type="number" class="p1-s1" min="0" step="1"><input type="number" class="p2-s1" min="0" step="1"></div>
+          <div class="set"><label>S2</label><input type="number" class="p1-s2" min="0" step="1"><input type="number" class="p2-s2" min="0" step="1"></div>
+          <div class="set"><label>S3</label><input type="number" class="p1-s3" min="0" step="1"><input type="number" class="p2-s3" min="0" step="1"></div>
+        </div>
+        <div class="nombres">
+          <span class="nombre1" data-pairid="L2-PAR-01">CARLOS y ROMAN</span>
+          <span class="vs">vs</span>
+          <span class="nombre2" data-pairid="L2-PAR-03">PABLO y MIGUEL</span>
+        </div>
+        <button class="btn-guardar" onclick="guardarPartido('L2-P1')">Guardar</button>
+      </div>
+
+      <div class="partido" id="L2-P2">
+        <div class="marcador">
+          <div class="set"><label>S1</label><input type="number" class="p1-s1" min="0" step="1"><input type="number" class="p2-s1" min="0" step="1"></div>
+          <div class="set"><label>S2</label><input type="number" class="p1-s2" min="0" step="1"><input type="number" class="p2-s2" min="0" step="1"></div>
+          <div class="set"><label>S3</label><input type="number" class="p1-s3" min="0" step="1"><input type="number" class="p2-s3" min="0" step="1"></div>
+        </div>
+        <div class="nombres">
+          <span class="nombre1" data-pairid="L2-PAR-02">JORGE y IVAN</span>
+          <span class="vs">vs</span>
+          <span class="nombre2" data-pairid="L2-PAR-04">JUST y DANI</span>
+        </div>
+        <button class="btn-guardar" onclick="guardarPartido('L2-P2')">Guardar</button>
+      </div>
     </div>
   </div>
 
+  <!-- J2 -->
+  <div class="jornada">
+    <div class="fecha-header" onclick="toggleJornada('L2-J2')">03 DE DICIEMBRE 2025</div>
+    <div class="partidos-container" id="L2-J2" style="display:none;">
+      <div class="partido" id="L2-P3">
+        <div class="marcador">
+          <div class="set"><label>S1</label><input type="number" class="p1-s1" min="0" step="1"><input type="number" class="p2-s1" min="0" step="1"></div>
+          <div class="set"><label>S2</label><input type="number" class="p1-s2" min="0" step="1"><input type="number" class="p2-s2" min="0" step="1"></div>
+          <div class="set"><label>S3</label><input type="number" class="p1-s3" min="0" step="1"><input type="number" class="p2-s3" min="0" step="1"></div>
+        </div>
+        <div class="nombres">
+          <span class="nombre1" data-pairid="L2-PAR-01">CARLOS y ROMAN</span>
+          <span class="vs">vs</span>
+          <span class="nombre2" data-pairid="L2-PAR-02">JORGE y IVAN</span>
+        </div>
+        <button class="btn-guardar" onclick="guardarPartido('L2-P3')">Guardar</button>
+      </div>
+
+      <div class="partido" id="L2-P4">
+        <div class="marcador">
+          <div class="set"><label>S1</label><input type="number" class="p1-s1" min="0" step="1"><input type="number" class="p2-s1" min="0" step="1"></div>
+          <div class="set"><label>S2</label><input type="number" class="p1-s2" min="0" step="1"><input type="number" class="p2-s2" min="0" step="1"></div>
+          <div class="set"><label>S3</label><input type="number" class="p1-s3" min="0" step="1"><input type="number" class="p2-s3" min="0" step="1"></div>
+        </div>
+        <div class="nombres">
+          <span class="nombre1" data-pairid="L2-PAR-03">PABLO y MIGUEL</span>
+          <span class="vs">vs</span>
+          <span class="nombre2" data-pairid="L2-PAR-04">JUST y DANI</span>
+        </div>
+        <button class="btn-guardar" onclick="guardarPartido('L2-P4')">Guardar</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- J3 -->
+  <div class="jornada">
+    <div class="fecha-header" onclick="toggleJornada('L2-J3')">10 DE DICIEMBRE 2025</div>
+    <div class="partidos-container" id="L2-J3" style="display:none;">
+      <div class="partido" id="L2-P5">
+        <div class="marcador">
+          <div class="set"><label>S1</label><input type="number" class="p1-s1" min="0" step="1"><input type="number" class="p2-s1" min="0" step="1"></div>
+          <div class="set"><label>S2</label><input type="number" class="p1-s2" min="0" step="1"><input type="number" class="p2-s2" min="0" step="1"></div>
+          <div class="set"><label>S3</label><input type="number" class="p1-s3" min="0" step="1"><input type="number" class="p2-s3" min="0" step="1"></div>
+        </div>
+        <div class="nombres">
+          <span class="nombre1" data-pairid="L2-PAR-01">CARLOS y ROMAN</span>
+          <span class="vs">vs</span>
+          <span class="nombre2" data-pairid="L2-PAR-04">JUST y DANI</span>
+        </div>
+        <button class="btn-guardar" onclick="guardarPartido('L2-P5')">Guardar</button>
+      </div>
+
+      <div class="partido" id="L2-P6">
+        <div class="marcador">
+          <div class="set"><label>S1</label><input type="number" class="p1-s1" min="0" step="1"><input type="number" class="p2-s1" min="0" step="1"></div>
+          <div class="set"><label>S2</label><input type="number" class="p1-s2" min="0" step="1"><input type="number" class="p2-s2" min="0" step="1"></div>
+          <div class="set"><label>S3</label><input type="number" class="p1-s3" min="0" step="1"><input type="number" class="p2-s3" min="0" step="1"></div>
+        </div>
+        <div class="nombres">
+          <!-- Suplente HUGO con IVAN: mantiene L2-PAR-02 -->
+          <span class="nombre1" data-pairid="L2-PAR-02">HUGO y IVAN</span>
+          <span class="vs">vs</span>
+          <span class="nombre2" data-pairid="L2-PAR-03">PABLO y MIGUEL</span>
+        </div>
+        <button class="btn-guardar" onclick="guardarPartido('L2-P6')">Guardar</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- J4 -->
+  <div class="jornada">
+    <div class="fecha-header" onclick="toggleJornada('L2-J4')">14 DE ENERO 2026</div>
+    <div class="partidos-container" id="L2-J4" style="display:none;">
+      <div class="partido" id="L2-P7">
+        <div class="marcador">
+          <div class="set"><label>S1</label><input type="number" class="p1-s1" min="0" step="1"><input type="number" class="p2-s1" min="0" step="1"></div>
+          <div class="set"><label>S2</label><input type="number" class="p1-s2" min="0" step="1"><input type="number" class="p2-s2" min="0" step="1"></div>
+          <div class="set"><label>S3</label><input type="number" class="p1-s3" min="0" step="1"><input type="number" class="p2-s3" min="0" step="1"></div>
+        </div>
+        <div class="nombres">
+          <span class="nombre1" data-pairid="L2-PAR-01">CARLOS y ROMAN</span>
+          <span class="vs">vs</span>
+          <span class="nombre2" data-pairid="L2-PAR-03">PABLO y MIGUEL</span>
+        </div>
+        <button class="btn-guardar" onclick="guardarPartido('L2-P7')">Guardar</button>
+      </div>
+
+      <div class="partido" id="L2-P8">
+        <div class="marcador">
+          <div class="set"><label>S1</label><input type="number" class="p1-s1" min="0" step="1"><input type="number" class="p2-s1" min="0" step="1"></div>
+          <div class="set"><label>S2</label><input type="number" class="p1-s2" min="0" step="1"><input type="number" class="p2-s2" min="0" step="1"></div>
+          <div class="set"><label>S3</label><input type="number" class="p1-s3" min="0" step="1"><input type="number" class="p2-s3" min="0" step="1"></div>
+        </div>
+        <div class="nombres">
+          <!-- Suplente XAVI con IVAN: mantiene L2-PAR-02 -->
+          <span class="nombre1" data-pairid="L2-PAR-02">XAVI y IVAN</span>
+          <span class="vs">vs</span>
+          <span class="nombre2" data-pairid="L2-PAR-04">JUST y DANI</span>
+        </div>
+        <button class="btn-guardar" onclick="guardarPartido('L2-P8')">Guardar</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- J5 -->
+  <div class="jornada">
+    <div class="fecha-header" onclick="toggleJornada('L2-J5')">21 DE ENERO 2026</div>
+    <div class="partidos-container" id="L2-J5" style="display:none;">
+      <div class="partido" id="L2-P9">
+        <div class="marcador">
+          <div class="set"><label>S1</label><input type="number" class="p1-s1" min="0" step="1"><input type="number" class="p2-s1" min="0" step="1"></div>
+          <div class="set"><label>S2</label><input type="number" class="p1-s2" min="0" step="1"><input type="number" class="p2-s2" min="0" step="1"></div>
+          <div class="set"><label>S3</label><input type="number" class="p1-s3" min="0" step="1"><input type="number" class="p2-s3" min="0" step="1"></div>
+        </div>
+        <div class="nombres">
+          <span class="nombre1" data-pairid="L2-PAR-01">CARLOS y ROMAN</span>
+          <span class="vs">vs</span>
+          <!-- Suplente HUGO con IVAN: mantiene L2-PAR-02 -->
+          <span class="nombre2" data-pairid="L2-PAR-02">HUGO y IVAN</span>
+        </div>
+        <button class="btn-guardar" onclick="guardarPartido('L2-P9')">Guardar</button>
+      </div>
+
+      <div class="partido" id="L2-P10">
+        <div class="marcador">
+          <div class="set"><label>S1</label><input type="number" class="p1-s1" min="0" step="1"><input type="number" class="p2-s1" min="0" step="1"></div>
+          <div class="set"><label>S2</label><input type="number" class="p1-s2" min="0" step="1"><input type="number" class="p2-s2" min="0" step="1"></div>
+          <div class="set"><label>S3</label><input type="number" class="p1-s3" min="0" step="1"><input type="number" class="p2-s3" min="0" step="1"></div>
+        </div>
+        <div class="nombres">
+          <span class="nombre1" data-pairid="L2-PAR-03">PABLO y MIGUEL</span>
+          <span class="vs">vs</span>
+          <span class="nombre2" data-pairid="L2-PAR-04">JUST y DANI</span>
+        </div>
+        <button class="btn-guardar" onclick="guardarPartido('L2-P10')">Guardar</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- J6 -->
+  <div class="jornada">
+    <div class="fecha-header" onclick="toggleJornada('L2-J6')">28 DE ENERO 2026</div>
+    <div class="partidos-container" id="L2-J6" style="display:none;">
+      <div class="partido" id="L2-P11">
+        <div class="marcador">
+          <div class="set"><label>S1</label><input type="number" class="p1-s1" min="0" step="1"><input type="number" class="p2-s1" min="0" step="1"></div>
+          <div class="set"><label>S2</label><input type="number" class="p1-s2" min="0" step="1"><input type="number" class="p2-s2" min="0" step="1"></div>
+          <div class="set"><label>S3</label><input type="number" class="p1-s3" min="0" step="1"><input type="number" class="p2-s3" min="0" step="1"></div>
+        </div>
+        <div class="nombres">
+          <!-- Suplente DAVID por ROMAN: mantiene L2-PAR-01 -->
+          <span class="nombre1" data-pairid="L2-PAR-01">CARLOS y DAVID</span>
+          <span class="vs">vs</span>
+          <span class="nombre2" data-pairid="L2-PAR-04">JUST y DANI</span>
+        </div>
+        <button class="btn-guardar" onclick="guardarPartido('L2-P11')">Guardar</button>
+      </div>
+
+      <div class="partido" id="L2-P12">
+        <div class="marcador">
+          <div class="set"><label>S1</label><input type="number" class="p1-s1" min="0" step="1"><input type="number" class="p2-s1" min="0" step="1"></div>
+          <div class="set"><label>S2</label><input type="number" class="p1-s2" min="0" step="1"><input type="number" class="p2-s2" min="0" step="1"></div>
+          <div class="set"><label>S3</label><input type="number" class="p1-s3" min="0" step="1"><input type="number" class="p2-s3" min="0" step="1"></div>
+        </div>
+        <div class="nombres">
+          <span class="nombre1" data-pairid="L2-PAR-02">JORGE y IVAN</span>
+          <span class="vs">vs</span>
+          <span class="nombre2" data-pairid="L2-PAR-03">PABLO y MIGUEL</span>
+        </div>
+        <button class="btn-guardar" onclick="guardarPartido('L2-P12')">Guardar</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="clasificacion-container">
+    <h3 style="text-align:center; color:#2c3e50; margin-bottom:10px">Tabla de Clasificación</h3>
+    <table class="tabla-clasificacion">
+      <thead>
+        <tr style="background:#e74c3c; color:black">
+          <th>Pos</th><th>Pareja</th><th>PJ</th><th>PG</th><th>PE</th><th>PP</th><th>Puntos</th>
+        </tr>
+      </thead>
+      <tbody id="cuerpo-tabla-liga02"></tbody>
+    </table>
+    <p style="text-align:center; margin-top:12px">
+      <button onclick="generarClasificacion('liga02')" class="btn-guardar" style="width:auto; background:#3498db">Recalcular Clasificación</button>
+    </p>
+  </div>
+</div>
   <!-- LIGA 03 -->
   <div id="liga03" class="liga-section active">
     <h2 class="section-title">LIGA 03</h2>
