@@ -1032,37 +1032,7 @@
       const tb=document.getElementById('cuerpo-tabla-global'); if(tb){ tb.innerHTML=''; ranking.forEach(j=>{ const tr=tb.insertRow(); const pos=j.posicion, med=medallaPorPos(pos); tr.style.cssText=estiloFilaPorPos(pos); tr.innerHTML=`<td class="posicion">${pos} ${med}</td><td style="padding:10px;font-weight:800;">${j.nombre}</td><td style="font-weight:800">${j.puntos}</td><td>${j.pj}</td><td>${j.porcentaje}%</td>`; }); }
     }
 
-   // ✅ Funciones auxiliares (colócalas antes del listener)
-function recalcularGanadorVisual(divPartido) {
-  if (!divPartido) return;
-  const n1 = divPartido.querySelector('.nombre1');
-  const n2 = divPartido.querySelector('.nombre2');
-  if (n1) n1.classList.remove('ganador');
-  if (n2) n2.classList.remove('ganador');
-
-  let s1 = 0, s2 = 0;
-  for (let i = 1; i <= 3; i++) {
-    const e1 = divPartido.querySelector('.p1-s' + i);
-    const e2 = divPartido.querySelector('.p2-s' + i);
-    const v1 = e1 ? parseInt(e1.value, 10) : NaN;
-    const v2 = e2 ? parseInt(e2.value, 10) : NaN;
-    if (!isNaN(v1) && !isNaN(v2)) {
-      if (v1 > v2) s1++;
-      else if (v2 > v1) s2++;
-    }
-  }
-
-  if (s1 >= 2 && n1) n1.classList.add('ganador');
-  else if (s2 >= 2 && n2) n2.classList.add('ganador');
-}
-
-const pendingLigaRecalc = {};
-function scheduleClasificacion(ligaId) {
-  if (!ligaId || ligaId === 'ranking-global') return;
-  clearTimeout(pendingLigaRecalc[ligaId]);
-  pendingLigaRecalc[ligaId] = setTimeout(() => generarClasificacion(ligaId), 200);
-}
-    
+  
  // Live load de resultados guardados
     database.ref('resultados/').on('value', snap=>{ const data=snap.val(); if(!data) return; Object.keys(data).forEach(id=>{ const div=document.getElementById(id); if(!div) return; const p1=data[id].p1||{}, p2=data[id].p2||{}; const q=s=>div.querySelector(s); const set=(el,val)=>{ if(el) el.value=val||''; }; set(q('.p1-s1'),p1.s1); set(q('.p1-s2'),p1.s2); set(q('.p1-s3'),p1.s3); set(q('.p2-s1'),p2.s1); set(q('.p2-s2'),p2.s2); set(q('.p2-s3'),p2.s3); }); });
 
