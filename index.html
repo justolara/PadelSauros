@@ -1032,9 +1032,66 @@
       const tb=document.getElementById('cuerpo-tabla-global'); if(tb){ tb.innerHTML=''; ranking.forEach(j=>{ const tr=tb.insertRow(); const pos=j.posicion, med=medallaPorPos(pos); tr.style.cssText=estiloFilaPorPos(pos); tr.innerHTML=`<td class="posicion">${pos} ${med}</td><td style="padding:10px;font-weight:800;">${j.nombre}</td><td style="font-weight:800">${j.puntos}</td><td>${j.pj}</td><td>${j.porcentaje}%</td>`; }); }
     }
 
-    // Live load de resultados guardados
-    database.ref('resultados/').on('value', snap=>{ const data=snap.val(); if(!data) return; Object.keys(data).forEach(id=>{ const div=document.getElementById(id); if(!div) return; const p1=data[id].p1||{}, p2=data[id].p2||{}; const q=s=>div.querySelector(s); const set=(el,val)=>{ if(el) el.value=val||''; }; set(q('.p1-s1'),p1.s1); set(q('.p1-s2'),p1.s2); set(q('.p1-s3'),p1.s3); set(q('.p2-s1'),p2.s1); set(q('.p2-s2'),p2.s2); set(q('.p2-s3'),p2.s3); }); });
+   // ✅ Funciones auxiliares (colócalas antes del listener)
+function recalcularGanadorVisual(divPartido) {
+  if (!divPartido) return;
+  const n1 = divPartido.querySelector('.nombre1');
+  const n2 = divPartido.querySelector('.nombre2');
+  if (n1) n1.classList.remove('ganador');
+  if (n2) n2.classList.remove('ganador');
 
+  let s1 = 0, s2 = 0;
+  for (let i = 1; i <= 3; i++) {
+    const e1 = divPartido.querySelector('.p1-s' + i);
+    const e2 = divPartido.querySelector('.p2-s' + i);
+    const v1 = e1 ? parseInt(e1.value, 10) : NaN;
+    const v2 = e2 ? parseInt(e2.value, 10) : NaN;
+    if (!isNaN(v1) && !isNaN(v2)) {
+      if (v1 > v2) s1++;
+      else if (v2 > v1) s2++;
+    }
+  }
+
+  if (s1 >= 2 && n1) n1.classList.add('ganador');
+  else if (s2 >= 2 && n2) n2.classList.add('ganador');
+}
+
+const pendingLigaRecalc = {};
+function scheduleClasificacion(ligaId) {
+  if (!ligaId || ligaId === 'ranking-global') return;
+  clearTimeout(pendingLigaRecalc[ligaId]);
+  pendingLigaRecalc[ligaId] = setTimeout(() => generarClasificacion(ligaId), 200);
+}
+
+// ✅ Listener mejorado (sustituye al antiguo)
+database.ref('resultados/').on('value', snap => {
+  const data = snap.val();
+  if (!data) return;
+
+  Object.keys(data).forEach(id => {
+    const div = document.getElementById(id);
+    if (!div) return;
+
+    const p1 = data[id].p1 || {};
+    const p2 = data[id].p2 || {};
+    const q = sel => div.querySelector(sel);
+    const setVal = (el, val) => { if (el) el.value = (val ?? '') === null ? '' : String(val ?? ''); };
+
+    setVal(q('.p1-s1'), p1.s1);
+    setVal(q('.p1-s2'), p1.s2);
+    setVal(q('.p1-s3'), p1.s3);
+    setVal(q('.p2-s1'), p2.s1);
+    setVal(q('.p2-s2'), p2.s2);
+    setVal(q('.p2-s3'), p2.s3);
+
+    // Recalcula ganador visual
+    recalcularGanadorVisual(div);
+
+    // Programa recálculo de la clasificación de su liga
+    const ligaSec = div.closest('.liga-section');
+    if (ligaSec) scheduleClasificacion(ligaSec.id);
+  });
+});
     // UI
     function toggleJornada(id){ const el=document.getElementById(id); if(!el) return; el.style.display=(el.style.display==='none'||el.style.display==='')?'block':'none'; }
     function cambiarLiga(id,btn){ document.querySelectorAll('.liga-section').forEach(s=>s.classList.remove('active')); document.querySelectorAll('.btn-liga').forEach(b=>b.classList.remove('active')); const el=document.getElementById(id); if(el) el.classList.add('active'); if(btn) btn.classList.add('active'); if(id==='ranking-global') { generarRankingIndividual(); } else { cargarClasificacion(id); } }
