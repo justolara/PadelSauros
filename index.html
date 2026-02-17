@@ -111,9 +111,10 @@
     </div>
   </div>
 
-  <!-- LIGA 03 (todas tus jornadas, original) -->
+  <!-- LIGA 03 -->
   <div id="liga03" class="liga-section active">
     <h2 class="section-title">LIGA 03</h2>
+
     <!-- J1 -->
     <div class="jornada">
       <div class="fecha-header" onclick="toggleJornada('j1-l3')">04 DE FEBRERO 2026</div>
@@ -124,7 +125,11 @@
             <div class="set"><label>S2</label><input type="number" class="p1-s2" min="0" step="1"><input type="number" class="p2-s2" min="0" step="1"></div>
             <div class="set"><label>S3</label><input type="number" class="p1-s3" min="0" step="1"><input type="number" class="p2-s3" min="0" step="1"></div>
           </div>
-          <div class="nombres"><span class="nombre1">MIGUEL y JORGE</span><span class="vs">vs</span><span class="nombre2">DANI y ROMAN</span></div>
+          <div class="nombres">
+            <span class="nombre1" data-pairid="L3-PAR-01">MIGUEL y JORGE</span>
+            <span class="vs">vs</span>
+            <span class="nombre2" data-pairid="L3-PAR-02">DANI y ROMAN</span>
+          </div>
           <button class="btn-guardar" onclick="guardarPartido('p1')">Guardar</button>
         </div>
         <div class="partido" id="p2">
@@ -133,11 +138,16 @@
             <div class="set"><label>S2</label><input type="number" class="p1-s2" min="0" step="1"><input type="number" class="p2-s2" min="0" step="1"></div>
             <div class="set"><label>S3</label><input type="number" class="p1-s3" min="0" step="1"><input type="number" class="p2-s3" min="0" step="1"></div>
           </div>
-          <div class="nombres"><span class="nombre1">IVAN y PABLO</span><span class="vs">vs</span><span class="nombre2">CARLOS y JUST</span></div>
+          <div class="nombres">
+            <span class="nombre1" data-pairid="L3-PAR-03">IVAN y PABLO</span>
+            <span class="vs">vs</span>
+            <span class="nombre2" data-pairid="L3-PAR-04">CARLOS y JUST</span>
+          </div>
           <button class="btn-guardar" onclick="guardarPartido('p2')">Guardar</button>
         </div>
       </div>
     </div>
+
     <!-- J2 -->
     <div class="jornada">
       <div class="fecha-header" onclick="toggleJornada('j2-l3')">11 DE FEBRERO 2026</div>
@@ -148,7 +158,12 @@
             <div class="set"><label>S2</label><input type="number" class="p1-s2" min="0" step="1"><input type="number" class="p2-s2" min="0" step="1"></div>
             <div class="set"><label>S3</label><input type="number" class="p1-s3" min="0" step="1"><input type="number" class="p2-s3" min="0" step="1"></div>
           </div>
-          <div class="nombres"><span class="nombre1">MIGUEL y XAVI</span><span class="vs">vs</span><span class="nombre2">IVAN y PABLO</span></div>
+          <div class="nombres">
+            <!-- Suplente XAVI, pero la pareja oficial es L3-PAR-01 -->
+            <span class="nombre1" data-pairid="L3-PAR-01">MIGUEL y XAVI</span>
+            <span class="vs">vs</span>
+            <span class="nombre2" data-pairid="L3-PAR-03">IVAN y PABLO</span>
+          </div>
           <button class="btn-guardar" onclick="guardarPartido('p3')">Guardar</button>
         </div>
         <div class="partido" id="p4">
@@ -157,11 +172,16 @@
             <div class="set"><label>S2</label><input type="number" class="p1-s2" min="0" step="1"><input type="number" class="p2-s2" min="0" step="1"></div>
             <div class="set"><label>S3</label><input type="number" class="p1-s3" min="0" step="1"><input type="number" class="p2-s3" min="0" step="1"></div>
           </div>
-          <div class="nombres"><span class="nombre1">DANI y ROMAN</span><span class="vs">vs</span><span class="nombre2">CARLOS y JUST</span></div>
+          <div class="nombres">
+            <span class="nombre1" data-pairid="L3-PAR-02">DANI y ROMAN</span>
+            <span class="vs">vs</span>
+            <span class="nombre2" data-pairid="L3-PAR-04">CARLOS y JUST</span>
+          </div>
           <button class="btn-guardar" onclick="guardarPartido('p4')">Guardar</button>
         </div>
       </div>
     </div>
+
     <!-- J3 -->
     <div class="jornada">
       <div class="fecha-header" onclick="toggleJornada('j3-l3')">18 DE FEBRERO 2026</div>
@@ -172,7 +192,11 @@
             <div class="set"><label>S2</label><input type="number" class="p1-s2" min="0" step="1"><input type="number" class="p2-s2" min="0" step="1"></div>
             <div class="set"><label>S3</label><input type="number" class="p1-s3" min="0" step="1"><input type="number" class="p2-s3" min="0" step="1"></div>
           </div>
-          <div class="nombres"><span class="nombre1">CARLOS y JUST</span><span class="vs">vs</span><span class="nombre2">MIGUEL y JORGE</span></div>
+          <div class="nombres">
+            <span class="nombre1" data-pairid="L3-PAR-04">CARLOS y JUST</span>
+            <span class="vs">vs</span>
+            <span class="nombre2" data-pairid="L3-PAR-01">MIGUEL y JORGE</span>
+          </div>
           <button class="btn-guardar" onclick="guardarPartido('p5')">Guardar</button>
         </div>
         <div class="partido" id="p6">
@@ -181,11 +205,16 @@
             <div class="set"><label>S2</label><input type="number" class="p1-s2" min="0" step="1"><input type="number" class="p2-s2" min="0" step="1"></div>
             <div class="set"><label>S3</label><input type="number" class="p1-s3" min="0" step="1"><input type="number" class="p2-s3" min="0" step="1"></div>
           </div>
-          <div class="nombres"><span class="nombre1">IVAN y PABLO</span><span class="vs">vs</span><span class="nombre2">DANI y ROMAN</span></div>
+          <div class="nombres">
+            <span class="nombre1" data-pairid="L3-PAR-03">IVAN y PABLO</span>
+            <span class="vs">vs</span>
+            <span class="nombre2" data-pairid="L3-PAR-02">DANI y ROMAN</span>
+          </div>
           <button class="btn-guardar" onclick="guardarPartido('p6')">Guardar</button>
         </div>
       </div>
     </div>
+
     <!-- J4 -->
     <div class="jornada">
       <div class="fecha-header" onclick="toggleJornada('j4-l3')">25 DE FEBRERO 2026</div>
@@ -196,7 +225,11 @@
             <div class="set"><label>S2</label><input type="number" class="p1-s2" min="0" step="1"><input type="number" class="p2-s2" min="0" step="1"></div>
             <div class="set"><label>S3</label><input type="number" class="p1-s3" min="0" step="1"><input type="number" class="p2-s3" min="0" step="1"></div>
           </div>
-          <div class="nombres"><span class="nombre1">MIGUEL y JORGE</span><span class="vs">vs</span><span class="nombre2">DANI y ROMAN</span></div>
+          <div class="nombres">
+            <span class="nombre1" data-pairid="L3-PAR-01">MIGUEL y JORGE</span>
+            <span class="vs">vs</span>
+            <span class="nombre2" data-pairid="L3-PAR-02">DANI y ROMAN</span>
+          </div>
           <button class="btn-guardar" onclick="guardarPartido('p7')">Guardar</button>
         </div>
         <div class="partido" id="p8">
@@ -205,11 +238,16 @@
             <div class="set"><label>S2</label><input type="number" class="p1-s2" min="0" step="1"><input type="number" class="p2-s2" min="0" step="1"></div>
             <div class="set"><label>S3</label><input type="number" class="p1-s3" min="0" step="1"><input type="number" class="p2-s3" min="0" step="1"></div>
           </div>
-          <div class="nombres"><span class="nombre1">IVAN y PABLO</span><span class="vs">vs</span><span class="nombre2">CARLOS y JUST</span></div>
+          <div class="nombres">
+            <span class="nombre1" data-pairid="L3-PAR-03">IVAN y PABLO</span>
+            <span class="vs">vs</span>
+            <span class="nombre2" data-pairid="L3-PAR-04">CARLOS y JUST</span>
+          </div>
           <button class="btn-guardar" onclick="guardarPartido('p8')">Guardar</button>
         </div>
       </div>
     </div>
+
     <!-- J5 -->
     <div class="jornada">
       <div class="fecha-header" onclick="toggleJornada('j5-l3')">04 DE MARZO 2026</div>
@@ -220,7 +258,11 @@
             <div class="set"><label>S2</label><input type="number" class="p1-s2" min="0" step="1"><input type="number" class="p2-s2" min="0" step="1"></div>
             <div class="set"><label>S3</label><input type="number" class="p1-s3" min="0" step="1"><input type="number" class="p2-s3" min="0" step="1"></div>
           </div>
-          <div class="nombres"><span class="nombre1">MIGUEL y JORGE</span><span class="vs">vs</span><span class="nombre2">IVAN y PABLO</span></div>
+          <div class="nombres">
+            <span class="nombre1" data-pairid="L3-PAR-01">MIGUEL y JORGE</span>
+            <span class="vs">vs</span>
+            <span class="nombre2" data-pairid="L3-PAR-03">IVAN y PABLO</span>
+          </div>
           <button class="btn-guardar" onclick="guardarPartido('p9')">Guardar</button>
         </div>
         <div class="partido" id="p10">
@@ -229,11 +271,16 @@
             <div class="set"><label>S2</label><input type="number" class="p1-s2" min="0" step="1"><input type="number" class="p2-s2" min="0" step="1"></div>
             <div class="set"><label>S3</label><input type="number" class="p1-s3" min="0" step="1"><input type="number" class="p2-s3" min="0" step="1"></div>
           </div>
-          <div class="nombres"><span class="nombre1">DANI y ROMAN</span><span class="vs">vs</span><span class="nombre2">CARLOS y JUST</span></div>
+          <div class="nombres">
+            <span class="nombre1" data-pairid="L3-PAR-02">DANI y ROMAN</span>
+            <span class="vs">vs</span>
+            <span class="nombre2" data-pairid="L3-PAR-04">CARLOS y JUST</span>
+          </div>
           <button class="btn-guardar" onclick="guardarPartido('p10')">Guardar</button>
         </div>
       </div>
     </div>
+
     <!-- J6 -->
     <div class="jornada">
       <div class="fecha-header" onclick="toggleJornada('j6-l3')">11 DE MARZO 2026</div>
@@ -244,7 +291,11 @@
             <div class="set"><label>S2</label><input type="number" class="p1-s2" min="0" step="1"><input type="number" class="p2-s2" min="0" step="1"></div>
             <div class="set"><label>S3</label><input type="number" class="p1-s3" min="0" step="1"><input type="number" class="p2-s3" min="0" step="1"></div>
           </div>
-          <div class="nombres"><span class="nombre1">CARLOS y JUST</span><span class="vs">vs</span><span class="nombre2">MIGUEL y JORGE</span></div>
+          <div class="nombres">
+            <span class="nombre1" data-pairid="L3-PAR-04">CARLOS y JUST</span>
+            <span class="vs">vs</span>
+            <span class="nombre2" data-pairid="L3-PAR-01">MIGUEL y JORGE</span>
+          </div>
           <button class="btn-guardar" onclick="guardarPartido('p11')">Guardar</button>
         </div>
         <div class="partido" id="p12">
@@ -253,7 +304,11 @@
             <div class="set"><label>S2</label><input type="number" class="p1-s2" min="0" step="1"><input type="number" class="p2-s2" min="0" step="1"></div>
             <div class="set"><label>S3</label><input type="number" class="p1-s3" min="0" step="1"><input type="number" class="p2-s3" min="0" step="1"></div>
           </div>
-          <div class="nombres"><span class="nombre1">IVAN y PABLO</span><span class="vs">vs</span><span class="nombre2">DANI y ROMAN</span></div>
+          <div class="nombres">
+            <span class="nombre1" data-pairid="L3-PAR-03">IVAN y PABLO</span>
+            <span class="vs">vs</span>
+            <span class="nombre2" data-pairid="L3-PAR-02">DANI y ROMAN</span>
+          </div>
           <button class="btn-guardar" onclick="guardarPartido('p12')">Guardar</button>
         </div>
       </div>
@@ -271,7 +326,7 @@
     </div>
   </div>
 
-  <!-- LIGA 04 (unificada) -->
+  <!-- LIGA 04 -->
   <div id="liga04" class="liga-section">
     <h2 class="section-title">LIGA 04</h2>
 
@@ -286,9 +341,9 @@
             <div class="set"><label>S3</label><input type="number" class="p1-s3" min="0" step="1"><input type="number" class="p2-s3" min="0" step="1"></div>
           </div>
           <div class="nombres">
-            <span class="nombre1">DANI y CARLOS</span>
+            <span class="nombre1" data-pairid="L4-PAR-01">DANI y CARLOS</span>
             <span class="vs">vs</span>
-            <span class="nombre2">JORGE y PABLO</span>
+            <span class="nombre2" data-pairid="L4-PAR-02">JORGE y PABLO</span>
           </div>
           <button class="btn-guardar" onclick="guardarPartido('p13')">Guardar</button>
         </div>
@@ -300,9 +355,9 @@
             <div class="set"><label>S3</label><input type="number" class="p1-s3" min="0" step="1"><input type="number" class="p2-s3" min="0" step="1"></div>
           </div>
           <div class="nombres">
-            <span class="nombre1">IVAN y MIGUEL</span>
+            <span class="nombre1" data-pairid="L4-PAR-03">IVAN y MIGUEL</span>
             <span class="vs">vs</span>
-            <span class="nombre2">JUST y ROMAN</span>
+            <span class="nombre2" data-pairid="L4-PAR-04">JUST y ROMAN</span>
           </div>
           <button class="btn-guardar" onclick="guardarPartido('p14')">Guardar</button>
         </div>
@@ -320,9 +375,9 @@
             <div class="set"><label>S3</label><input type="number" class="p1-s3" min="0" step="1"><input type="number" class="p2-s3" min="0" step="1"></div>
           </div>
           <div class="nombres">
-            <span class="nombre1">DANI y CARLOS</span>
+            <span class="nombre1" data-pairid="L4-PAR-01">DANI y CARLOS</span>
             <span class="vs">vs</span>
-            <span class="nombre2">IVAN y MIGUEL</span>
+            <span class="nombre2" data-pairid="L4-PAR-03">IVAN y MIGUEL</span>
           </div>
           <button class="btn-guardar" onclick="guardarPartido('L4-P3')">Guardar</button>
         </div>
@@ -334,9 +389,9 @@
             <div class="set"><label>S3</label><input type="number" class="p1-s3" min="0" step="1"><input type="number" class="p2-s3" min="0" step="1"></div>
           </div>
           <div class="nombres">
-            <span class="nombre1">JORGE y PABLO</span>
+            <span class="nombre1" data-pairid="L4-PAR-02">JORGE y PABLO</span>
             <span class="vs">vs</span>
-            <span class="nombre2">JUST y ROMAN</span>
+            <span class="nombre2" data-pairid="L4-PAR-04">JUST y ROMAN</span>
           </div>
           <button class="btn-guardar" onclick="guardarPartido('L4-P4')">Guardar</button>
         </div>
@@ -354,9 +409,9 @@
             <div class="set"><label>S3</label><input type="number" class="p1-s3" min="0" step="1"><input type="number" class="p2-s3" min="0" step="1"></div>
           </div>
           <div class="nombres">
-            <span class="nombre1">JUST y ROMAN</span>
+            <span class="nombre1" data-pairid="L4-PAR-04">JUST y ROMAN</span>
             <span class="vs">vs</span>
-            <span class="nombre2">DANI y CARLOS</span>
+            <span class="nombre2" data-pairid="L4-PAR-01">DANI y CARLOS</span>
           </div>
           <button class="btn-guardar" onclick="guardarPartido('L4-P5')">Guardar</button>
         </div>
@@ -368,9 +423,9 @@
             <div class="set"><label>S3</label><input type="number" class="p1-s3" min="0" step="1"><input type="number" class="p2-s3" min="0" step="1"></div>
           </div>
           <div class="nombres">
-            <span class="nombre1">JORGE y PABLO</span>
+            <span class="nombre1" data-pairid="L4-PAR-02">JORGE y PABLO</span>
             <span class="vs">vs</span>
-            <span class="nombre2">IVAN y MIGUEL</span>
+            <span class="nombre2" data-pairid="L4-PAR-03">IVAN y MIGUEL</span>
           </div>
           <button class="btn-guardar" onclick="guardarPartido('L4-P6')">Guardar</button>
         </div>
@@ -388,9 +443,9 @@
             <div class="set"><label>S3</label><input type="number" class="p1-s3" min="0" step="1"><input type="number" class="p2-s3" min="0" step="1"></div>
           </div>
           <div class="nombres">
-            <span class="nombre1">DANI y CARLOS</span>
+            <span class="nombre1" data-pairid="L4-PAR-01">DANI y CARLOS</span>
             <span class="vs">vs</span>
-            <span class="nombre2">JORGE y PABLO</span>
+            <span class="nombre2" data-pairid="L4-PAR-02">JORGE y PABLO</span>
           </div>
           <button class="btn-guardar" onclick="guardarPartido('L4-P7')">Guardar</button>
         </div>
@@ -402,9 +457,9 @@
             <div class="set"><label>S3</label><input type="number" class="p1-s3" min="0" step="1"><input type="number" class="p2-s3" min="0" step="1"></div>
           </div>
           <div class="nombres">
-            <span class="nombre1">IVAN y MIGUEL</span>
+            <span class="nombre1" data-pairid="L4-PAR-03">IVAN y MIGUEL</span>
             <span class="vs">vs</span>
-            <span class="nombre2">JUST y ROMAN</span>
+            <span class="nombre2" data-pairid="L4-PAR-04">JUST y ROMAN</span>
           </div>
           <button class="btn-guardar" onclick="guardarPartido('L4-P8')">Guardar</button>
         </div>
@@ -422,9 +477,9 @@
             <div class="set"><label>S3</label><input type="number" class="p1-s3" min="0" step="1"><input type="number" class="p2-s3" min="0" step="1"></div>
           </div>
           <div class="nombres">
-            <span class="nombre1">DANI y CARLOS</span>
+            <span class="nombre1" data-pairid="L4-PAR-01">DANI y CARLOS</span>
             <span class="vs">vs</span>
-            <span class="nombre2">IVAN y MIGUEL</span>
+            <span class="nombre2" data-pairid="L4-PAR-03">IVAN y MIGUEL</span>
           </div>
           <button class="btn-guardar" onclick="guardarPartido('L4-P9')">Guardar</button>
         </div>
@@ -436,9 +491,9 @@
             <div class="set"><label>S3</label><input type="number" class="p1-s3" min="0" step="1"><input type="number" class="p2-s3" min="0" step="1"></div>
           </div>
           <div class="nombres">
-            <span class="nombre1">JORGE y PABLO</span>
+            <span class="nombre1" data-pairid="L4-PAR-02">JORGE y PABLO</span>
             <span class="vs">vs</span>
-            <span class="nombre2">JUST y ROMAN</span>
+            <span class="nombre2" data-pairid="L4-PAR-04">JUST y ROMAN</span>
           </div>
           <button class="btn-guardar" onclick="guardarPartido('L4-P10')">Guardar</button>
         </div>
@@ -456,9 +511,9 @@
             <div class="set"><label>S3</label><input type="number" class="p1-s3" min="0" step="1"><input type="number" class="p2-s3" min="0" step="1"></div>
           </div>
           <div class="nombres">
-            <span class="nombre1">JUST y ROMAN</span>
+            <span class="nombre1" data-pairid="L4-PAR-04">JUST y ROMAN</span>
             <span class="vs">vs</span>
-            <span class="nombre2">DANI y CARLOS</span>
+            <span class="nombre2" data-pairid="L4-PAR-01">DANI y CARLOS</span>
           </div>
           <button class="btn-guardar" onclick="guardarPartido('L4-P11')">Guardar</button>
         </div>
@@ -470,9 +525,9 @@
             <div class="set"><label>S3</label><input type="number" class="p1-s3" min="0" step="1"><input type="number" class="p2-s3" min="0" step="1"></div>
           </div>
           <div class="nombres">
-            <span class="nombre1">JORGE y PABLO</span>
+            <span class="nombre1" data-pairid="L4-PAR-02">JORGE y PABLO</span>
             <span class="vs">vs</span>
-            <span class="nombre2">IVAN y MIGUEL</span>
+            <span class="nombre2" data-pairid="L4-PAR-03">IVAN y MIGUEL</span>
           </div>
           <button class="btn-guardar" onclick="guardarPartido('L4-P12')">Guardar</button>
         </div>
@@ -486,7 +541,7 @@
     </div>
   </div>
 
-  <!-- LIGA 05 (unificada) -->
+  <!-- LIGA 05 -->
   <div id="liga05" class="liga-section">
     <h2 class="section-title">LIGA 05</h2>
 
@@ -501,9 +556,9 @@
             <div class="set"><label>S3</label><input type="number" class="p1-s3" min="0" step="1"><input type="number" class="p2-s3" min="0" step="1"></div>
           </div>
           <div class="nombres">
-            <span class="nombre1">JUST y JORGE</span>
+            <span class="nombre1" data-pairid="L5-PAR-01">JUST y JORGE</span>
             <span class="vs">vs</span>
-            <span class="nombre2">DANI y IVAN</span>
+            <span class="nombre2" data-pairid="L5-PAR-02">DANI y IVAN</span>
           </div>
           <button class="btn-guardar" onclick="guardarPartido('L5-P1')">Guardar</button>
         </div>
@@ -515,9 +570,9 @@
             <div class="set"><label>S3</label><input type="number" class="p1-s3" min="0" step="1"><input type="number" class="p2-s3" min="0" step="1"></div>
           </div>
           <div class="nombres">
-            <span class="nombre1">CARLOS y MIGUEL</span>
+            <span class="nombre1" data-pairid="L5-PAR-03">CARLOS y MIGUEL</span>
             <span class="vs">vs</span>
-            <span class="nombre2">ROMAN y PABLO</span>
+            <span class="nombre2" data-pairid="L5-PAR-04">ROMAN y PABLO</span>
           </div>
           <button class="btn-guardar" onclick="guardarPartido('L5-P2')">Guardar</button>
         </div>
@@ -535,9 +590,9 @@
             <div class="set"><label>S3</label><input type="number" class="p1-s3" min="0" step="1"><input type="number" class="p2-s3" min="0" step="1"></div>
           </div>
           <div class="nombres">
-            <span class="nombre1">JUST y JORGE</span>
+            <span class="nombre1" data-pairid="L5-PAR-01">JUST y JORGE</span>
             <span class="vs">vs</span>
-            <span class="nombre2">CARLOS y MIGUEL</span>
+            <span class="nombre2" data-pairid="L5-PAR-03">CARLOS y MIGUEL</span>
           </div>
           <button class="btn-guardar" onclick="guardarPartido('L5-P3')">Guardar</button>
         </div>
@@ -549,9 +604,9 @@
             <div class="set"><label>S3</label><input type="number" class="p1-s3" min="0" step="1"><input type="number" class="p2-s3" min="0" step="1"></div>
           </div>
           <div class="nombres">
-            <span class="nombre1">DANI y IVAN</span>
+            <span class="nombre1" data-pairid="L5-PAR-02">DANI y IVAN</span>
             <span class="vs">vs</span>
-            <span class="nombre2">ROMAN y PABLO</span>
+            <span class="nombre2" data-pairid="L5-PAR-04">ROMAN y PABLO</span>
           </div>
           <button class="btn-guardar" onclick="guardarPartido('L5-P4')">Guardar</button>
         </div>
@@ -569,9 +624,9 @@
             <div class="set"><label>S3</label><input type="number" class="p1-s3" min="0" step="1"><input type="number" class="p2-s3" min="0" step="1"></div>
           </div>
           <div class="nombres">
-            <span class="nombre1">ROMAN y PABLO</span>
+            <span class="nombre1" data-pairid="L5-PAR-04">ROMAN y PABLO</span>
             <span class="vs">vs</span>
-            <span class="nombre2">JUST y JORGE</span>
+            <span class="nombre2" data-pairid="L5-PAR-01">JUST y JORGE</span>
           </div>
           <button class="btn-guardar" onclick="guardarPartido('L5-P5')">Guardar</button>
         </div>
@@ -583,9 +638,9 @@
             <div class="set"><label>S3</label><input type="number" class="p1-s3" min="0" step="1"><input type="number" class="p2-s3" min="0" step="1"></div>
           </div>
           <div class="nombres">
-            <span class="nombre1">DANI y IVAN</span>
+            <span class="nombre1" data-pairid="L5-PAR-02">DANI y IVAN</span>
             <span class="vs">vs</span>
-            <span class="nombre2">CARLOS y MIGUEL</span>
+            <span class="nombre2" data-pairid="L5-PAR-03">CARLOS y MIGUEL</span>
           </div>
           <button class="btn-guardar" onclick="guardarPartido('L5-P6')">Guardar</button>
         </div>
@@ -603,9 +658,9 @@
             <div class="set"><label>S3</label><input type="number" class="p1-s3" min="0" step="1"><input type="number" class="p2-s3" min="0" step="1"></div>
           </div>
           <div class="nombres">
-            <span class="nombre1">JUST y JORGE</span>
+            <span class="nombre1" data-pairid="L5-PAR-01">JUST y JORGE</span>
             <span class="vs">vs</span>
-            <span class="nombre2">DANI y IVAN</span>
+            <span class="nombre2" data-pairid="L5-PAR-02">DANI y IVAN</span>
           </div>
           <button class="btn-guardar" onclick="guardarPartido('L5-P7')">Guardar</button>
         </div>
@@ -617,9 +672,9 @@
             <div class="set"><label>S3</label><input type="number" class="p1-s3" min="0" step="1"><input type="number" class="p2-s3" min="0" step="1"></div>
           </div>
           <div class="nombres">
-            <span class="nombre1">CARLOS y MIGUEL</span>
+            <span class="nombre1" data-pairid="L5-PAR-03">CARLOS y MIGUEL</span>
             <span class="vs">vs</span>
-            <span class="nombre2">ROMAN y PABLO</span>
+            <span class="nombre2" data-pairid="L5-PAR-04">ROMAN y PABLO</span>
           </div>
           <button class="btn-guardar" onclick="guardarPartido('L5-P8')">Guardar</button>
         </div>
@@ -637,9 +692,9 @@
             <div class="set"><label>S3</label><input type="number" class="p1-s3" min="0" step="1"><input type="number" class="p2-s3" min="0" step="1"></div>
           </div>
           <div class="nombres">
-            <span class="nombre1">JUST y JORGE</span>
+            <span class="nombre1" data-pairid="L5-PAR-01">JUST y JORGE</span>
             <span class="vs">vs</span>
-            <span class="nombre2">CARLOS y MIGUEL</span>
+            <span class="nombre2" data-pairid="L5-PAR-03">CARLOS y MIGUEL</span>
           </div>
           <button class="btn-guardar" onclick="guardarPartido('L5-P9')">Guardar</button>
         </div>
@@ -651,9 +706,9 @@
             <div class="set"><label>S3</label><input type="number" class="p1-s3" min="0" step="1"><input type="number" class="p2-s3" min="0" step="1"></div>
           </div>
           <div class="nombres">
-            <span class="nombre1">DANI y IVAN</span>
+            <span class="nombre1" data-pairid="L5-PAR-02">DANI y IVAN</span>
             <span class="vs">vs</span>
-            <span class="nombre2">ROMAN y PABLO</span>
+            <span class="nombre2" data-pairid="L5-PAR-04">ROMAN y PABLO</span>
           </div>
           <button class="btn-guardar" onclick="guardarPartido('L5-P10')">Guardar</button>
         </div>
@@ -671,9 +726,9 @@
             <div class="set"><label>S3</label><input type="number" class="p1-s3" min="0" step="1"><input type="number" class="p2-s3" min="0" step="1"></div>
           </div>
           <div class="nombres">
-            <span class="nombre1">ROMAN y PABLO</span>
+            <span class="nombre1" data-pairid="L5-PAR-04">ROMAN y PABLO</span>
             <span class="vs">vs</span>
-            <span class="nombre2">JUST y JORGE</span>
+            <span class="nombre2" data-pairid="L5-PAR-01">JUST y JORGE</span>
           </div>
           <button class="btn-guardar" onclick="guardarPartido('L5-P11')">Guardar</button>
         </div>
@@ -685,9 +740,9 @@
             <div class="set"><label>S3</label><input type="number" class="p1-s3" min="0" step="1"><input type="number" class="p2-s3" min="0" step="1"></div>
           </div>
           <div class="nombres">
-            <span class="nombre1">DANI y IVAN</span>
+            <span class="nombre1" data-pairid="L5-PAR-02">DANI y IVAN</span>
             <span class="vs">vs</span>
-            <span class="nombre2">CARLOS y MIGUEL</span>
+            <span class="nombre2" data-pairid="L5-PAR-03">CARLOS y MIGUEL</span>
           </div>
           <button class="btn-guardar" onclick="guardarPartido('L5-P12')">Guardar</button>
         </div>
@@ -697,7 +752,7 @@
     <div class="clasificacion-container"><h3 style="text-align:center; color:#2c3e50; margin-bottom:10px">Tabla de Clasificación</h3><table class="tabla-clasificacion"><thead><tr style="background:#e74c3c; color:black"><th>Pos</th><th>Pareja</th><th>PJ</th><th>PG</th><th>PE</th><th>PP</th><th>Puntos</th></tr></thead><tbody id="cuerpo-tabla-liga05"></tbody></table><p style="text-align:center; margin-top:12px"><button onclick="generarClasificacion('liga05')" class="btn-guardar" style="width:auto; background:#3498db">Recalcular Clasificación</button></p></div>
   </div>
 
-  <!-- LIGA 06 (unificada) -->
+  <!-- LIGA 06 -->
   <div id="liga06" class="liga-section">
     <h2 class="section-title">LIGA 06</h2>
 
@@ -712,9 +767,9 @@
             <div class="set"><label>S3</label><input type="number" class="p1-s3" min="0" step="1"><input type="number" class="p2-s3" min="0" step="1"></div>
           </div>
           <div class="nombres">
-            <span class="nombre1">CARLOS y JORGE</span>
+            <span class="nombre1" data-pairid="L6-PAR-01">CARLOS y JORGE</span>
             <span class="vs">vs</span>
-            <span class="nombre2">JUST y PABLO</span>
+            <span class="nombre2" data-pairid="L6-PAR-02">JUST y PABLO</span>
           </div>
           <button class="btn-guardar" onclick="guardarPartido('L6-P1')">Guardar</button>
         </div>
@@ -726,9 +781,9 @@
             <div class="set"><label>S3</label><input type="number" class="p1-s3" min="0" step="1"><input type="number" class="p2-s3" min="0" step="1"></div>
           </div>
           <div class="nombres">
-            <span class="nombre1">MIGUEL y DANI</span>
+            <span class="nombre1" data-pairid="L6-PAR-03">MIGUEL y DANI</span>
             <span class="vs">vs</span>
-            <span class="nombre2">IVAN y ROMAN</span>
+            <span class="nombre2" data-pairid="L6-PAR-04">IVAN y ROMAN</span>
           </div>
           <button class="btn-guardar" onclick="guardarPartido('L6-P2')">Guardar</button>
         </div>
@@ -746,9 +801,9 @@
             <div class="set"><label>S3</label><input type="number" class="p1-s3" min="0" step="1"><input type="number" class="p2-s3" min="0" step="1"></div>
           </div>
           <div class="nombres">
-            <span class="nombre1">CARLOS y JORGE</span>
+            <span class="nombre1" data-pairid="L6-PAR-01">CARLOS y JORGE</span>
             <span class="vs">vs</span>
-            <span class="nombre2">MIGUEL y DANI</span>
+            <span class="nombre2" data-pairid="L6-PAR-03">MIGUEL y DANI</span>
           </div>
           <button class="btn-guardar" onclick="guardarPartido('L6-P3')">Guardar</button>
         </div>
@@ -760,9 +815,9 @@
             <div class="set"><label>S3</label><input type="number" class="p1-s3" min="0" step="1"><input type="number" class="p2-s3" min="0" step="1"></div>
           </div>
           <div class="nombres">
-            <span class="nombre1">JUST y PABLO</span>
+            <span class="nombre1" data-pairid="L6-PAR-02">JUST y PABLO</span>
             <span class="vs">vs</span>
-            <span class="nombre2">IVAN y ROMAN</span>
+            <span class="nombre2" data-pairid="L6-PAR-04">IVAN y ROMAN</span>
           </div>
           <button class="btn-guardar" onclick="guardarPartido('L6-P4')">Guardar</button>
         </div>
@@ -780,9 +835,9 @@
             <div class="set"><label>S3</label><input type="number" class="p1-s3" min="0" step="1"><input type="number" class="p2-s3" min="0" step="1"></div>
           </div>
           <div class="nombres">
-            <span class="nombre1">IVAN y ROMAN</span>
+            <span class="nombre1" data-pairid="L6-PAR-04">IVAN y ROMAN</span>
             <span class="vs">vs</span>
-            <span class="nombre2">CARLOS y JORGE</span>
+            <span class="nombre2" data-pairid="L6-PAR-01">CARLOS y JORGE</span>
           </div>
           <button class="btn-guardar" onclick="guardarPartido('L6-P5')">Guardar</button>
         </div>
@@ -794,9 +849,9 @@
             <div class="set"><label>S3</label><input type="number" class="p1-s3" min="0" step="1"><input type="number" class="p2-s3" min="0" step="1"></div>
           </div>
           <div class="nombres">
-            <span class="nombre1">JUST y PABLO</span>
+            <span class="nombre1" data-pairid="L6-PAR-02">JUST y PABLO</span>
             <span class="vs">vs</span>
-            <span class="nombre2">MIGUEL y DANI</span>
+            <span class="nombre2" data-pairid="L6-PAR-03">MIGUEL y DANI</span>
           </div>
           <button class="btn-guardar" onclick="guardarPartido('L6-P6')">Guardar</button>
         </div>
@@ -814,9 +869,9 @@
             <div class="set"><label>S3</label><input type="number" class="p1-s3" min="0" step="1"><input type="number" class="p2-s3" min="0" step="1"></div>
           </div>
           <div class="nombres">
-            <span class="nombre1">CARLOS y JORGE</span>
+            <span class="nombre1" data-pairid="L6-PAR-01">CARLOS y JORGE</span>
             <span class="vs">vs</span>
-            <span class="nombre2">JUST y PABLO</span>
+            <span class="nombre2" data-pairid="L6-PAR-02">JUST y PABLO</span>
           </div>
           <button class="btn-guardar" onclick="guardarPartido('L6-P7')">Guardar</button>
         </div>
@@ -828,9 +883,9 @@
             <div class="set"><label>S3</label><input type="number" class="p1-s3" min="0" step="1"><input type="number" class="p2-s3" min="0" step="1"></div>
           </div>
           <div class="nombres">
-            <span class="nombre1">MIGUEL y DANI</span>
+            <span class="nombre1" data-pairid="L6-PAR-03">MIGUEL y DANI</span>
             <span class="vs">vs</span>
-            <span class="nombre2">IVAN y ROMAN</span>
+            <span class="nombre2" data-pairid="L6-PAR-04">IVAN y ROMAN</span>
           </div>
           <button class="btn-guardar" onclick="guardarPartido('L6-P8')">Guardar</button>
         </div>
@@ -848,9 +903,9 @@
             <div class="set"><label>S3</label><input type="number" class="p1-s3" min="0" step="1"><input type="number" class="p2-s3" min="0" step="1"></div>
           </div>
           <div class="nombres">
-            <span class="nombre1">CARLOS y JORGE</span>
+            <span class="nombre1" data-pairid="L6-PAR-01">CARLOS y JORGE</span>
             <span class="vs">vs</span>
-            <span class="nombre2">MIGUEL y DANI</span>
+            <span class="nombre2" data-pairid="L6-PAR-03">MIGUEL y DANI</span>
           </div>
           <button class="btn-guardar" onclick="guardarPartido('L6-P9')">Guardar</button>
         </div>
@@ -862,9 +917,9 @@
             <div class="set"><label>S3</label><input type="number" class="p1-s3" min="0" step="1"><input type="number" class="p2-s3" min="0" step="1"></div>
           </div>
           <div class="nombres">
-            <span class="nombre1">JUST y PABLO</span>
+            <span class="nombre1" data-pairid="L6-PAR-02">JUST y PABLO</span>
             <span class="vs">vs</span>
-            <span class="nombre2">IVAN y ROMAN</span>
+            <span class="nombre2" data-pairid="L6-PAR-04">IVAN y ROMAN</span>
           </div>
           <button class="btn-guardar" onclick="guardarPartido('L6-P10')">Guardar</button>
         </div>
@@ -882,9 +937,9 @@
             <div class="set"><label>S3</label><input type="number" class="p1-s3" min="0" step="1"><input type="number" class="p2-s3" min="0" step="1"></div>
           </div>
           <div class="nombres">
-            <span class="nombre1">IVAN y ROMAN</span>
+            <span class="nombre1" data-pairid="L6-PAR-04">IVAN y ROMAN</span>
             <span class="vs">vs</span>
-            <span class="nombre2">CARLOS y JORGE</span>
+            <span class="nombre2" data-pairid="L6-PAR-01">CARLOS y JORGE</span>
           </div>
           <button class="btn-guardar" onclick="guardarPartido('L6-P11')">Guardar</button>
         </div>
@@ -896,9 +951,9 @@
             <div class="set"><label>S3</label><input type="number" class="p1-s3" min="0" step="1"><input type="number" class="p2-s3" min="0" step="1"></div>
           </div>
           <div class="nombres">
-            <span class="nombre1">JUST y PABLO</span>
+            <span class="nombre1" data-pairid="L6-PAR-02">JUST y PABLO</span>
             <span class="vs">vs</span>
-            <span class="nombre2">MIGUEL y DANI</span>
+            <span class="nombre2" data-pairid="L6-PAR-03">MIGUEL y DANI</span>
           </div>
           <button class="btn-guardar" onclick="guardarPartido('L6-P12')">Guardar</button>
         </div>
@@ -953,17 +1008,26 @@
         .catch(e=>alert('❌ Error: '+e.message));
     }
 
-    // Clasificación dinámica (L03..L06)
+    // Clasificación dinámica (por ID de pareja en data-pairid)
     function generarClasificacion(ligaId){
       if(ligaId==='liga01'||ligaId==='liga02') return;
       const root=document.getElementById(ligaId); if(!root) return;
       const partidos=root.querySelectorAll('.partido');
-      const est={};
+      const est={}; // key = pairId
+
       partidos.forEach(p=>{
         const a=p.querySelector('.nombre1'), b=p.querySelector('.nombre2'); if(!a||!b) return;
-        const n1=a.innerText.trim(), n2=b.innerText.trim();
-        if(!est[n1]) est[n1]={pj:0,pg:0,pe:0,pp:0,puntos:0};
-        if(!est[n2]) est[n2]={pj:0,pg:0,pe:0,pp:0,puntos:0};
+        const pair1Id=(a.dataset.pairid||'').trim();
+        const pair2Id=(b.dataset.pairid||'').trim();
+        if(!pair1Id||!pair2Id) return;
+
+        // Nombre visible actual (para mostrar y guardar)
+        const name1=a.innerText.trim();
+        const name2=b.innerText.trim();
+
+        if(!est[pair1Id]) est[pair1Id]={pj:0,pg:0,pe:0,pp:0,puntos:0,nombre:name1};
+        if(!est[pair2Id]) est[pair2Id]={pj:0,pg:0,pe:0,pp:0,puntos:0,nombre:name2};
+
         let sp1=0,sp2=0,comp=0;
         for(let i=1;i<=3;i++){
           const e1=p.querySelector('.p1-s'+i), e2=p.querySelector('.p2-s'+i);
@@ -971,36 +1035,50 @@
           if(!isNaN(v1)&&!isNaN(v2)){ comp++; if(v1>v2) sp1++; else if(v2>v1) sp2++; }
         }
         if(comp>0){
-          est[n1].pj++; est[n2].pj++;
-          if(sp1>sp2){ est[n1].pg++; est[n1].puntos+=1; est[n2].pp++; }
-          else if(sp2>sp1){ est[n2].pg++; est[n2].puntos+=1; est[n1].pp++; }
-          else { est[n1].pe++; est[n2].pe++; est[n1].puntos+=0.5; est[n2].puntos+=0.5; }
+          est[pair1Id].pj++; est[pair2Id].pj++;
+          if(sp1>sp2){ est[pair1Id].pg++; est[pair1Id].puntos+=1; est[pair2Id].pp++; }
+          else if(sp2>sp1){ est[pair2Id].pg++; est[pair2Id].puntos+=1; est[pair1Id].pp++; }
+          else { est[pair1Id].pe++; est[pair2Id].pe++; est[pair1Id].puntos+=0.5; est[pair2Id].puntos+=0.5; }
         }
       });
-      const ranking=Object.keys(est).map(n=>({nombre:n,...est[n]})).sort((x,y)=>{
+
+      const ranking=Object.keys(est).map(id=>({pairId:id, ...est[id]})).sort((x,y)=>{
         if(y.puntos!==x.puntos) return y.puntos-x.puntos;
         if(y.pg!==x.pg) return y.pg-x.pg;
         const da=x.pg-x.pp, db=y.pg-y.pp; return db-da;
       });
       asignarPosicionesDensas(ranking,'puntos');
+
+      // Pintar
       const tb=document.getElementById('cuerpo-tabla-'+ligaId);
-      if(tb){ tb.innerHTML=''; ranking.forEach(p=>{
-        const tr=tb.insertRow(); const pos=p.posicion, med=medallaPorPos(pos);
-        tr.style.cssText=estiloFilaPorPos(pos);
-        tr.innerHTML=`<td class="posicion">${pos} ${med}</td><td style="padding:10px;font-weight:800;">${p.nombre}</td><td>${p.pj}</td><td>${p.pg}</td><td>${p.pe}</td><td>${p.pp}</td><td style="font-weight:800">${p.puntos}</td>`;
-      }); }
-      const save={}; ranking.forEach(p=>save[p.nombre]={...p});
+      if(tb){
+        tb.innerHTML='';
+        ranking.forEach(p=>{
+          const tr=tb.insertRow(); const pos=p.posicion, med=medallaPorPos(pos);
+          tr.style.cssText=estiloFilaPorPos(pos);
+          tr.innerHTML=`<td class="posicion">${pos} ${med}</td>
+                        <td style="padding:10px;font-weight:800;">${p.nombre}</td>
+                        <td>${p.pj}</td><td>${p.pg}</td><td>${p.pe}</td><td>${p.pp}</td>
+                        <td style="font-weight:800">${p.puntos}</td>`;
+        });
+      }
+
+      // Guardar por pairId
+      const save={}; ranking.forEach(p=> save[p.pairId]={nombre:p.nombre,pj:p.pj,pg:p.pg,pe:p.pe,pp:p.pp,puntos:p.puntos});
       database.ref('clasificacion/'+ligaId).set(save).catch(()=>{});
     }
 
-    // Carga clasificación (estática y dinámica desde Firebase)
+    // Carga clasificación (lee por pairId y usa el 'nombre' guardado)
     function cargarClasificacion(ligaId){
       if(ligaId==='liga01'){ return pintarEstatico('cuerpo-tabla-liga01', liga01Data); }
       if(ligaId==='liga02'){ return pintarEstatico('cuerpo-tabla-liga02', liga02Data); }
       const tb=document.getElementById('cuerpo-tabla-'+ligaId); if(!tb) return; tb.innerHTML='';
       database.ref('clasificacion/'+ligaId).once('value').then(s=>{
         const data=s.val(); if(!data) return;
-        const ranking=Object.keys(data).map(n=>({nombre:n,...data[n]})).sort((x,y)=>{
+        const ranking=Object.keys(data).map(pairId=>{
+          const it=data[pairId];
+          return { pairId, nombre: it.nombre, pj: it.pj, pg: it.pg, pe: it.pe, pp: it.pp, puntos: it.puntos };
+        }).sort((x,y)=>{
           if(y.puntos!==x.puntos) return y.puntos-x.puntos;
           if(y.pg!==x.pg) return y.pg-x.pg;
           const da=x.pg-x.pp, db=y.pg-y.pp; return db-da;
@@ -1009,7 +1087,10 @@
         ranking.forEach(p=>{
           const tr=tb.insertRow(); const pos=p.posicion, med=medallaPorPos(pos);
           tr.style.cssText=estiloFilaPorPos(pos);
-          tr.innerHTML=`<td class="posicion">${pos} ${med}</td><td style="padding:10px;font-weight:800;">${p.nombre}</td><td>${p.pj}</td><td>${p.pg}</td><td>${p.pe}</td><td>${p.pp}</td><td style="font-weight:800">${p.puntos}</td>`;
+          tr.innerHTML=`<td class="posicion">${pos} ${med}</td>
+                        <td style="padding:10px;font-weight:800;">${p.nombre}</td>
+                        <td>${p.pj}</td><td>${p.pg}</td><td>${p.pe}</td><td>${p.pp}</td>
+                        <td style="font-weight:800">${p.puntos}</td>`;
         });
       }).catch(()=>{});
     }
@@ -1025,7 +1106,7 @@
       });
     }
 
-    // Ranking global individual (con L01 y L02 añadidas manualmente)
+    // Ranking global individual (suma por jugadores visibles; suplentes incluidos)
     function generarRankingIndividual(){
       const partidos=document.querySelectorAll('.partido');
       const stats={};
@@ -1055,7 +1136,7 @@
        LISTENER SIN RECÁLCULO
        ========================== */
 
-    // (OPCIONAL) Solo efecto visual de ganador; no afecta cálculos de ranking
+    // Solo efecto visual de ganador; no afecta cálculos de ranking
     function recalcularGanadorVisual(divPartido) {
       if (!divPartido) return;
       const n1 = divPartido.querySelector('.nombre1');
@@ -1102,7 +1183,7 @@
         setVal(q('.p2-s2'), p2.s2);
         setVal(q('.p2-s3'), p2.s3);
 
-        // (Opcional) Solo efecto visual del ganador
+        // Solo efecto visual del ganador
         recalcularGanadorVisual(div);
       });
     });
