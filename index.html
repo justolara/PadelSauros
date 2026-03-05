@@ -1544,7 +1544,16 @@
         if(comp===0) return;
         let pt1=0,pt2=0, win1=false, win2=false;
         if(s1>s2){ pt1=1; win1=true; } else if(s2>s1){ pt2=1; win2=true; } else { pt1=0.5; pt2=0.5; }
-        const add=(txt,pt,win)=>{ txt.trim().split(' y ').forEach(n=>{ const k=n.trim(); if(!stats[k]) stats[k]={pj:0,pg:0,puntos:0}; stats[k].pj++; stats[k].puntos+=pt; if(win) stats[k].pg++; }); };
+        const add=(txt,pt,win)=>{ 
+          txt.trim().split(' y ').forEach(n=>{ 
+            const k=n.replace(/⭐/g, '').trim(); // Quitamos estrellas y espacios
+            if(!k) return; // Si el nombre está vacío, saltamos
+            if(!stats[k]) stats[k]={pj:0,pg:0,puntos:0}; 
+            stats[k].pj++; 
+            stats[k].puntos+=pt; 
+            if(win) stats[k].pg++; 
+           }); 
+        };
         add(a.innerText,pt1,win1); add(b.innerText,pt2,win2);
       });
       const ranking=Object.keys(stats).map(n=>{ const s=stats[n]; const porc=s.pj>0?((s.pg/s.pj)*100).toFixed(1):'0.0'; return {nombre:n,puntos:s.puntos,pj:s.pj,pg:s.pg,porcentaje:porc}; }).sort((a,b)=>b.puntos-a.puntos);
